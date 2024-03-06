@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>Taylordle - Wordle for Taylor Swift!</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="/boat.ico">
+    </head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCKG7Q93BE"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TCKG7Q93BE');
+    </script>
+    <body>
+        <!-- Top Buttons -->
+        <div class="topButtons">
+            <button onclick="showHelpModal()">?</button>
+        </div>
+        <div class="contentContainer">
+
+            <h1>Taylordle.xyz</h1>
+            <div class="search">
+                <input type="search" id="songInput" placeholder="Enter a Song" autocomplete="off" />
+                <div id="suggestions" style="position: absolute; background: white; border: 1px solid #ddd;"></div>
+            </div>
+
+            <button id="submitBtn">submit</button>
+            <div id="guessCounter">Guesses: 0/8</div>
+
+            <div class="grid-table">
+                <div class="grid-header">Track Name</div>
+                <div class="grid-header">Album</div>
+                <div class="grid-header">Track Number</div>
+                <div class="grid-header">Track Length</div>
+                <div class="grid-header">Features</div>
+                
+                <tbody class="guessTableBody"></tbody>
+            </div>
+            
+            <!-- Help Modal -->
+            <div id="helpModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="closeModal" onclick="closeModal()">&times;</span>
+                    <p>Welcome to Taylordle.</p>
+                    <ul>
+                        <li>You have 8 guesses to get the correct Taylor Swift song</li>
+                        <li><span class="greenText">Green</span> in any column means a complete match</li>
+                        <li><span class="yellowText">Yellow</span> in the <b>album</b> or <b>track number</b> column indicates that this attribute is <b>within 2</b> (albums or tracks), with an arrow hinting if it is higher ( ↑ ) or lower ( ↓ ).</li>
+                        <li><span class="yellowText">Yellow</span> in the <b>track length</b> column indicates that the song length is within <b>30 seconds</b>, with an arrow hinting if it is higher ( ↑ ) or lower ( ↓ ).</li>
+                        <li><span class="yellowText">Yellow</span> in the <b>features</b> column indicates that <b>one</b> or more of the <b>featured artists</b> is correct.</li>
+                    </ul>
+                    <button onclick="closeModal()">Start</button>
+                </div>
+            </div>
+            
+            <!-- Win Modal -->
+            <div id="winModal" class="modal" style="display:none;">
+                <div id="winModalContent" class="modal-content">
+                    <span class="closeModal" onclick="closeModal()">&times;</span>
+                    <p>Congratulations! You've guessed the correct song!</p>
+                    <div class="correctSong" id="correctSongWin"></div>
+                    <div class="stats" id="winStats">
+                        <div class="stat">
+                            <p>Streak:</p>
+                            <p id="streakWin">0</p>
+                        </div>
+                        <div class="stat">
+                            <p>Correct:</p>
+                            <p id="correctWin">0</p>
+                        </div>
+                        <div class="stat">
+                            <p>Games:</p>
+                            <p id="gamesWin">0</p>
+                        </div>
+                    </div>
+
+                    <button onclick="shareContent()">Share Your Score</button>
+                    
+                </div>
+            </div>
+            
+            <!-- Lose Modal -->
+            <div id="loseModal" class="modal" style="display:none;">
+                <div id="loseModalContent" class="modal-content">
+                    <span class="closeModal" onclick="closeModal()">&times;</span>
+                    <p>Game Over! You've used all your guesses.</p>
+                    <p>The correct song was:</p>
+                    <div class="correctSong" id="correctSongLose"></div>
+                    <div class="stats">
+                        <div class="stat">
+                            <p>Streak:</p>
+                            <p id="streakLose">0</p>
+                        </div>
+                        <div class="stat">
+                            <p>Correct:</p>
+                            <p id="correctLose">0</p>
+                        </div>
+                        <div class="stat">
+                            <p>Games:</p>
+                            <p id="gamesLose">0</p>
+                        </div>
+                    </div>
+                    <button onclick="shareContent()">Share Your Score</button>
+                </div>
+            </div>
+        </div>
+        <script src="app.js"></script>
+    </body>
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Us', '#d94a6e', 'Y8Y1V7SR9');kofiwidget2.draw();</script>
+</html>

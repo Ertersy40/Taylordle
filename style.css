@@ -1,0 +1,398 @@
+:root {
+    --background-color: rgb(40, 40, 40);
+    --text-color: white;
+    --text-color2: black;
+    --placeholder-text: rgb(194, 194, 194);
+
+    --button-color: rgb(156, 156, 156);
+    --button-hover: rgb(129, 129, 129);
+
+    --input-background: rgb(65, 65, 65);
+
+    --suggestion-color: #f2f2f2;
+    --suggestion-hover: #f2f2f2;
+    
+    --modal-color: black;
+    --outline-color: #888;
+
+    --correct: #56c14a;
+    --close: #e0c736;
+
+    --cell-color: rgba(255, 255, 255, 0.188);
+}
+
+
+/* General body styling */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    
+    background-color: var(--background-color); /* Fallback color */
+    background-image: 
+    radial-gradient(circle at 20% 35%, #be2e1e, transparent 50%),
+    radial-gradient(circle at 75% 25%, #632406, transparent 50%),
+    radial-gradient(circle at 50% 60%, #d96fd9, transparent 50%);
+    background-repeat: no-repeat;
+
+}
+
+.topButtons{
+    z-index: 100;
+    position: fixed;
+    top: 20px;
+    right: 10px;
+}
+
+.topButtons button{
+    height: 40px;
+    width: 35px;
+    border-radius: 30px;
+    background-color: var(--background-color);
+    border: 3px solid var(--button-color);
+}
+
+.contentContainer{
+    /* background-color: rgba(255, 255, 255, 0.051); */
+    border-radius: 20px;
+    /* backdrop-filter: blur(10px); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+}
+
+
+/* Styling for the main heading */
+h1 {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 30px;
+}
+
+/* Input field styling */
+input[type="search"], textarea{
+    text-align: center;
+    font-size: 16px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--outline-color);
+    border-radius: 5px;
+}
+
+::placeholder {
+    color: var(--placeholder-text);
+}
+
+/* Suggestion box styling */
+.search{
+    width: 50%;
+    min-width: 250px;
+}
+
+#suggestions {
+    translate: 0px -10px;
+    display: none;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: center;
+    width: 50%;
+    min-width: 250px;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: var(--suggestion-hover);
+}
+
+/* Button styling */
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+#submitBtn{
+    background-color: (--correct);
+    max-width: 250px;
+}
+
+#guessCounter{
+    color: var(--text-color);
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Table styling */
+.grid-table {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Keep your 5 columns */
+    row-gap: 5px;
+    column-gap: 2px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+
+.grid-header {
+    font-weight: bold;
+    color: var(--text-color);
+    padding: 8px;
+    text-align: center;
+}
+
+.grid-cell {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Changed to center for better default alignment */
+    background-color: var(--cell-color);
+    padding: 8px;
+    text-align: center;
+    min-width: 0; /* Allows the content to shrink without overflow */
+    overflow: hidden; /* Hides any overflow */
+    word-break: break-word; /* Ensures text wraps */
+}
+
+/* Target the first element in each row */
+.grid-table .grid-cell:nth-child(5n+1) {
+    border-radius: 10px 0px 0px 10px;
+}
+
+.grid-table .grid-cell:nth-child(5n) {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.album_cell {
+    display: flex; /* Keeps the album image and span next to each other */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Align items to the start of the cell */
+    min-width: 70px; /* Keeps your min-width */
+    min-height: 70px;
+}
+
+.album_cell img, .album_cell span {
+    vertical-align: middle; /* This may not be necessary with flexbox alignment */
+}
+
+@media (max-width: 768px) {
+    .grid-header{
+        font-size: x-small;
+    }
+    .grid-cell {
+        padding: 2px;
+        font-size: x-small;
+    }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    .contentContainer{
+        padding-inline: 10px;
+    }
+}
+
+/* Correctness indicators */
+.correct {
+    font-weight: bold;
+    background-color: var(--correct);
+    color: var(--text-color2);
+}
+
+.before-close, .after-close, .close{
+    background-color: var(--close);
+    color: var(--text-color2);
+}
+
+.greenText{
+    background-color: var(--correct);
+    border-radius: 3px;
+    padding-inline: 3px;
+    padding-block: 1px;
+}
+
+.yellowText{
+    background-color: var(--close);
+    border-radius: 3px;
+    padding-inline: 3px;
+    padding-block: 1px;
+}
+
+li{
+    margin-block: 10px;
+}
+
+
+.modal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--modal-color);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    color: var(--text-color);
+    background-color: var(--modal-color);
+    padding: 20px;
+    border: 1px solid var(--outline-color);
+    width: 80%;
+    max-width: 422px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.closeModal{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.modal-content p{
+    width: 80%;
+    text-align: center;
+}
+
+.closeModal {
+    color: var(--text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeModal:hover,
+.closeModal:focus {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.correctSong{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.correctSong p{
+    margin-block: 5px;
+}
+
+.stats{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.stat{
+    padding: 3px;
+    background-color: var(--input-background);
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat p{
+    margin: 5px;
+    width: fit-content;
+}
+
+.stop-scrolling {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.btn-container{
+    z-index: 100;
+    position: fixed;
+    bottom: 10px;
+    left: 30px;
+}
+
+
+/* Animation for correct and close sections */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.correct, .before-close, .after-close, .close {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes bounceUp {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes bounceDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+.up-arrow {
+    animation: bounceUp 1s 2; /* Play the animation twice */
+}
+
+.down-arrow {
+    animation: bounceDown 1s 2; /* Play the animation twice */
+}
+
+
+.arrow-container {
+    display: inline-block; /* Or 'block' if you want the arrows to appear below the image */
+    vertical-align: middle; /* Aligns the arrow vertically center if inline-block */
+    /* Additional styling as needed */
+}
