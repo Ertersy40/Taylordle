@@ -101,6 +101,29 @@ body {
     max-width: 800px;
 }
 
+@keyframes slideIn {
+    from { top: -50px; }
+    to { top: 20px; }
+}
+
+@keyframes slideOut {
+    from { top: 20px; }
+    to { top: -50px; }
+}
+
+#errorBox {
+    position: fixed;
+    top: -50px; /* Start out of view */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--close);
+    color: var(--text-color2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: slideOut 0.5s ease-in-out forwards;
+}
+
 
 /* Styling for the main heading */
 h1 {
@@ -109,6 +132,7 @@ h1 {
     color: var(--text-color);
     text-align: center;
     font-size: 60px;
+    margin-bottom: 35px;
 }
 
 #albumContainer{
@@ -116,7 +140,9 @@ h1 {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    margin-bottom: 35px;
 }
+
 .album{
     margin-top: 20px;
     width: 70px;
@@ -124,6 +150,7 @@ h1 {
     margin-right: 10px;
     animation-timing-function: ease-in-out;
 }
+
 @keyframes wave {
     0%, 100% {
       transform: translateY(0);
@@ -133,7 +160,7 @@ h1 {
     }
 }
 
-input[type="search"], textarea, .suggestion-item, .grid-table, #submitBtn, #guessCounter, p, .modal, button {
+input[type="search"], textarea, .suggestion-item, .grid-table, #submitBtn, #guessCounter, p, .modal, button, #errorBox {
     font-family: 'TaylorSwiftHandwriting';
     font-size: larger;
 }
@@ -275,11 +302,17 @@ button:hover {
 
 @media (max-width: 768px) {
     .grid-header{
-        font-size: x-small;
+        font-size: large;
     }
     .grid-cell {
         padding: 2px;
-        font-size: x-small;
+        font-size: large;
+    }
+    .album{
+        width: 50px;
+    }
+    .contentContainer{
+        padding-inline: 10px;
     }
 }
 
@@ -287,6 +320,13 @@ button:hover {
 @media (max-width: 480px) {
     .contentContainer{
         padding-inline: 10px;
+    }
+    .grid-header{
+        font-size: small;
+    }
+    .grid-cell {
+        padding: 2px;
+        font-size: small;
     }
 }
 

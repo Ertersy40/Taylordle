@@ -125,21 +125,42 @@ function handleSubmit() {
         return;
     }
 
-    if (allTrackNames.includes(songInput)) {
+    if (guesses.includes(songInput)) {
+        showError("you've already guessed this song!")
+        document.getElementById('songInput').value = '';
+        document.getElementById('suggestions').style.display = 'none';
+    } else if (allTrackNames.includes(songInput)) {
         document.getElementById('songInput').value = '';
         document.getElementById('suggestions').style.display = 'none';
         addGuess(songInput);
         guesses.push(songInput);
-        updateGuessCounterDisplay(); // Update guess counter display
+        updateGuessCounterDisplay();
         localStorage.setItem('guesses', JSON.stringify(guesses));
 
-    } else if (guesses.includes(songInput)) {
-        console.log("You have already guessed this song.");
     } else {
-        console.log('Invalid song name. Please try again.');
+        showError('Invalid song name!');
     }
 }
 
+function showError(message) {
+    // Create the error box if it doesn't exist
+    if (!document.querySelector('#errorBox')) {
+        const errorBox = document.createElement('div');
+        errorBox.id = 'errorBox';
+        document.body.appendChild(errorBox);
+    }
+
+    const errorBox = document.querySelector('#errorBox');
+    errorBox.textContent = message;
+
+    // Apply the slide-in animation
+    errorBox.style.animation = 'slideIn 0.5s ease-in-out forwards';
+
+    // Switch to the slide-out animation after 3 seconds
+    setTimeout(() => {
+        errorBox.style.animation = 'slideOut 0.5s ease-in-out forwards';
+    }, 2500);
+}
 
 function disableGameInput() {
     // Disable the input field
@@ -289,14 +310,11 @@ function addGuess(guess) {
 function adjustBodyHeight() {
     const bodyContentHeight = document.body.scrollHeight;
     const viewportHeight = window.innerHeight;
-    console.log(bodyContentHeight, viewportHeight)
 
     if (bodyContentHeight > viewportHeight) {
-        console.log('content!')
         document.body.classList.remove("viewport-height");
         document.body.classList.add("content-height");
     } else {
-        console.log('viewport!')
         document.body.classList.remove("content-height");
         document.body.classList.add("viewport-height");
     }
