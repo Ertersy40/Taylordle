@@ -7,6 +7,15 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'TaylorSwiftHandwriting';
+    src: url('TaylorSwiftHandwriting.woff2') format('woff2'),
+        url('TaylorSwiftHandwriting.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --background-color: rgb(40, 40, 40);
     --text-color: white;
@@ -14,7 +23,7 @@
     --placeholder-text: rgb(194, 194, 194);
 
     --button-color: rgb(156, 156, 156);
-    --button-hover: rgb(129, 129, 129);
+    --button-hover: #888;
 
     --input-background: rgb(65, 65, 65);
 
@@ -32,23 +41,39 @@
 
 /* General body styling */
 body {
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: 'Arial', sans-serif;
     margin: 0;
+    width: 98.5vw;
+}
+
+/* Class when body content fits within the viewport */
+.viewport-height {
     height: 100vh;
-    width: 100vw;
-    
     background-color: var(--background-color); /* Fallback color */
     background-image: 
     radial-gradient(circle at 20% 35%, #be2e1e, transparent 50%),
     radial-gradient(circle at 75% 25%, #632406, transparent 50%),
     radial-gradient(circle at 50% 60%, #d96fd9, transparent 50%);
     background-repeat: no-repeat;
-
 }
+
+/* Class when body content exceeds the viewport */
+.content-height {
+    height: 100%; /* Height based on content */
+    background-color: var(--background-color); /* Fallback color */
+    background-image: 
+    radial-gradient(circle at 20% 35%, #be2e1e, transparent 50%),
+    radial-gradient(circle at 75% 25%, #632406, transparent 50%),
+    radial-gradient(circle at 50% 60%, #d96fd9, transparent 50%);
+    background-repeat: no-repeat;
+    padding-bottom: 100px;
+}
+
 
 .topButtons{
     z-index: 100;
@@ -108,8 +133,14 @@ h1 {
     }
 }
 
+input[type="search"], textarea, .suggestion-item, .grid-table, #submitBtn, #guessCounter, p, .modal, button {
+    font-family: 'TaylorSwiftHandwriting';
+    font-size: larger;
+}
+
 /* Input field styling */
 input[type="search"], textarea{
+    font-family: 'TaylorSwiftHandwriting';
     text-align: center;
     font-size: 16px;
     background-color: var(--input-background);
@@ -169,8 +200,14 @@ button:hover {
 }
 
 #submitBtn{
-    background-color: (--correct);
+    outline: 1px solid white;
+    background-color: var(--correct);
     max-width: 250px;
+}
+
+#submitBtn:hover{
+    background-color: white;
+    color: black;
 }
 
 #guessCounter{
@@ -179,6 +216,10 @@ button:hover {
     font-size: 20px;
     margin-bottom: 10px;
 }
+.alternate-font {
+    font-family: sans-serif; /* Replace 'YourAlternateFont' with the actual font name */
+}
+
 
 /* Table styling */
 .grid-table {

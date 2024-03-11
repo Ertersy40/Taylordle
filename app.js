@@ -49,9 +49,8 @@ function pickRandomSong() {
 }
 
 function updateGuessCounterDisplay() {
-    document.getElementById('guessCounter').textContent = `Guesses: ${guesses.length}/8`;
+    document.getElementById('guesses').innerHTML = `Guesses: ${guesses.length}<span class="alternate-font">/</span>8`;
 }
-
 
 function showHelpModal() {
     disableScrolling();
@@ -193,6 +192,7 @@ function gameLost() {
 
 
 function addGuess(guess) {
+    
     const trackInfo = getTrackInfo(guess); // Assuming guess is the track name
     const correctness = compareToTarget(trackInfo);
 
@@ -262,6 +262,7 @@ function addGuess(guess) {
         cell.className = criteria.replace(" ", "-"); // Use className for styling based on the criteria
         cell.className += ' grid-cell'
         document.querySelector('.grid-table').appendChild(cell);
+        adjustBodyHeight()
     };
 
 
@@ -285,7 +286,21 @@ function addGuess(guess) {
     }
 }
 
+function adjustBodyHeight() {
+    const bodyContentHeight = document.body.scrollHeight;
+    const viewportHeight = window.innerHeight;
+    console.log(bodyContentHeight, viewportHeight)
 
+    if (bodyContentHeight > viewportHeight) {
+        console.log('content!')
+        document.body.classList.remove("viewport-height");
+        document.body.classList.add("content-height");
+    } else {
+        console.log('viewport!')
+        document.body.classList.remove("content-height");
+        document.body.classList.add("viewport-height");
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     fetchAlbums().then(trackNames => {
@@ -294,6 +309,10 @@ document.addEventListener('DOMContentLoaded', function() {
         checkAndUpdateDate(); // Call this function to check the date and load or reset guesses
         updateGuessCounterDisplay();
     });
+    adjustBodyHeight();
+
+    // Adjust the height whenever the window is resized
+    window.addEventListener("resize", adjustBodyHeight);
 
     // Add event listener to the submit button
     const submitBtn = document.getElementById('submitBtn');
