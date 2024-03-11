@@ -154,42 +154,6 @@
         ]
     },
     {
-        "album_name": "Fearless Platinum Edition",
-        "img_url": "https://i.scdn.co/image/ab67616d0000b27334e5885465afc8a497ac1b7e",
-        "tracks": [
-            {
-                "track_name": "Jump Then Fall",
-                "track_length": "3:57",
-                "features": []
-            },
-            {
-                "track_name": "Untouchable",
-                "track_length": "5:11",
-                "features": []
-            },
-            {
-                "track_name": "Forever & Always - Piano Version",
-                "track_length": "4:27",
-                "features": []
-            },
-            {
-                "track_name": "Come In With The Rain",
-                "track_length": "3:58",
-                "features": []
-            },
-            {
-                "track_name": "SuperStar",
-                "track_length": "4:21",
-                "features": []
-            },
-            {
-                "track_name": "The Other Side Of The Door",
-                "track_length": "3:57",
-                "features": []
-            }
-        ]
-    },
-    {
         "album_name": "Speak Now",
         "img_url": "https://i.scdn.co/image/ab67616d0000b273e11a75a2f2ff39cec788a015",
         "tracks": [

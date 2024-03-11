@@ -335,6 +335,7 @@ function fetchAlbums() {
         })
         .then(albums => {
             albumsData = albums; // Set the global albumsData variable
+            populateAlbumsDiv(albumsData)
             const trackNames = getAllTrackNames(albums); // Process the albums to get track names
             return trackNames; // Return the track names for the next .then()
         })
@@ -342,6 +343,23 @@ function fetchAlbums() {
             console.error('There has been a problem with your fetch operation:', error);
         });
 }
+
+function populateAlbumsDiv(albumsData) {
+    const albumsContainer = document.getElementById('albumContainer');
+    albumsData.forEach((album, index) => {
+        const img = document.createElement('img');
+        img.className = 'album';
+        img.src = album.img_url;
+        img.alt = album.album_name;
+
+        // Apply the wave animation with a dynamic delay
+        img.style.animation = 'wave 2s infinite';
+        img.style.animationDelay = `${index * 0.2}s`;
+
+        albumsContainer.appendChild(img);
+    });
+}
+
 
 // Assuming you have a function getAllTrackNames defined like in the previous example
 function getAllTrackNames(albums) {
