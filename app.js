@@ -56,6 +56,13 @@ function showHelpModal() {
     document.getElementById('helpModal').style.display = "flex";
 }
 
+function showResults() {
+    if (gameWonCheck){
+        showWinModal()
+    } else {
+        showLoseModal()
+    }
+}
 function showWinModal() {
     disableScrolling();
     document.getElementById('winModal').style.display = "flex";
@@ -80,20 +87,23 @@ function enableScroll() {
 
 function revealTarget(modal) {
     const container = document.getElementById(`correctSong${modal}`);
-    const img = document.createElement('img');
-    img.src = targetInfo.img_url;
-    img.style.width = '150px';
-    img.style.height = 'auto';
-    container.appendChild(img);
+    if (!container.querySelector('.target-image')) {
+        const img = document.createElement('img');
+        img.src = targetInfo.img_url;
+        img.style.width = '150px';
+        img.style.height = 'auto';
+        img.classList.add('target-image');
+        container.appendChild(img);
 
-    const track_name = document.createElement('p');
-    track_name.textContent = targetInfo.track_name;
-    container.appendChild(track_name);
+        const track_name = document.createElement('p');
+        track_name.textContent = targetInfo.track_name;
+        container.appendChild(track_name);
 
-    if (targetInfo.features.length > 0){
-    const ft = document.createElement('p');
-        ft.textContent = `ft. ${targetInfo.features.join(', ')}`;
-        container.appendChild(ft)
+        if (targetInfo.features && targetInfo.features.length > 0) {
+            const ft = document.createElement('p');
+            ft.textContent = `ft. ${targetInfo.features.join(', ')}`;
+            container.appendChild(ft);
+        }
     }
 }
 
@@ -165,10 +175,18 @@ function disableGameInput() {
     // Disable the input field
     const songInputField = document.getElementById('songInput');
     songInputField.disabled = true;
+    songInputField.style.display = 'none'
+
+    const inputUnderline = document.getElementById('underline')
+    inputUnderline.style.display = 'none'
 
     // Disable the submit button
     const submitButton = document.getElementById('submitBtn');
     submitButton.disabled = true;
+    submitButton.style.display = 'none'
+
+    const resultsButton = document.getElementById('results');
+    resultsButton.style.display = 'block'
 }
 
 
@@ -588,7 +606,7 @@ function generateEmojiString() {
 function shareContent() {
     const emojis = generateEmojiString();
 
-    const startDate = new Date('2023-08-23');
+    const startDate = new Date('2023-12-13');
     const currentDate = new Date();
     const timeDiff = currentDate - startDate;
     const dayNumber = Math.floor(timeDiff / (1000 * 60 * 60 * 24));

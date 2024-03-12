@@ -102,13 +102,13 @@ body {
 }
 
 @keyframes slideIn {
-    from { top: -50px; }
+    from { top: -100px; }
     to { top: 20px; }
 }
 
 @keyframes slideOut {
     from { top: 20px; }
-    to { top: -50px; }
+    to { top: -100px; }
 }
 
 #errorBox {
@@ -234,7 +234,7 @@ button:hover {
     background-color: var(--button-hover);
 }
 
-#submitBtn{
+#submitBtn, #results{
     height: 42px;
     outline: 2px solid white;
     background-color: rgba(255, 255, 255, 0.3);
@@ -243,11 +243,16 @@ button:hover {
     border-radius: 15px;
 }
 
-#submitBtn p{
+#results{
+    display: none;
+    max-width: 200px;
+}
+
+#submitBtn p, #results p{
     margin: 0px;
 }
 
-#submitBtn:hover{
+#submitBtn:hover, #results:hover{
     background-color: white;
     color: black;
 }
