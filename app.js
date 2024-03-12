@@ -129,7 +129,6 @@ function handleSubmit() {
     const songInput = document.getElementById('songInput').value;
 
     if (guesses.length >= MAX_GUESSES) {
-        disableGameInput();
         gameLost();
         return;
     }
