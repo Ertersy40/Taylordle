@@ -401,6 +401,7 @@ li{
     color: var(--text-color);
     background-color: var(--modal-color);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 15px;
     padding: 20px;
     border: 1px solid var(--outline-color);
