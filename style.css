@@ -22,8 +22,8 @@
     --text-color2: black;
     --placeholder-text: rgb(255, 255, 255, 0.6);
 
-    --button-color: rgb(156, 156, 156);
-    --button-hover: #888;
+    --button-color: rgba(255, 255, 255, 0.4);
+    --button-hover: #ffffff;
 
     --input-background: rgb(65, 65, 65);
 
@@ -225,13 +225,14 @@ button {
     margin: 10px 0;
     background-color: var(--button-color);
     color: var(--text-color);
-    border: none;
+    border: 2px solid white;
     border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
     background-color: var(--button-hover);
+    color: var(--text-color2);
 }
 
 #submitBtn, #results{
@@ -459,7 +460,6 @@ li{
 
 .stat{
     padding: 3px;
-    background-color: var(--input-background);
     border-radius: 5px;
     text-align: center;
     display: flex;
