@@ -76,7 +76,7 @@ body {
 
 
 .topButtons{
-    z-index: 100;
+    z-index: 1;
     position: fixed;
     top: 20px;
     right: 10px;
@@ -387,7 +387,7 @@ li{
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 1;
+    z-index: 101;
     left: 0;
     top: 0;
     width: 100%;
@@ -477,7 +477,7 @@ li{
 }
 
 .btn-container{
-    z-index: 100;
+    z-index: 0;
     position: fixed;
     bottom: 10px;
     left: 30px;
