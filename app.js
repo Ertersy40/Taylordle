@@ -30,7 +30,6 @@ function pickRandomSong() {
         const indexToExclude = Math.floor(pseudoRandom(seedForDay) * allTrackNames.length);
         excludeIndices.add(indexToExclude);
     }
-    console.log(allTrackNames)
     // Filter out songs to exclude
     const availableSongs = allTrackNames.filter((_, index) => !excludeIndices.has(index));
 
@@ -489,9 +488,6 @@ function compareToTarget(trackInfo) {
         featuresMatch: "incorrect" 
     };
 
-    console.log(trackInfo)
-    console.log(targetInfo)
-
     // Helper function to convert track length (mm:ss) to total seconds
     const trackLengthToSeconds = (trackLength) => {
         const [minutes, seconds] = trackLength.split(':').map(Number);
@@ -608,7 +604,7 @@ function shareContent() {
             navigator.share({
                 text: textToShare,
             })
-            .catch((error) => console.log('Error sharing content:', error));
+            .catch((error) => showError('Error sharing content...'));
         } else {
             // Fallback if Web Share API is not supported
             copyToClipboard(textToShare);
