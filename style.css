@@ -30,7 +30,7 @@
     --suggestion-color: #f2f2f2;
     --suggestion-hover: #f2f2f2;
     
-    --modal-color: black;
+    --modal-color: rgb(172, 172, 172, 0.4);
     --outline-color: #888;
 
     --correct: #56c14a;
@@ -400,6 +400,8 @@ li{
 .modal-content {
     color: var(--text-color);
     background-color: var(--modal-color);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
     padding: 20px;
     border: 1px solid var(--outline-color);
     width: 80%;
