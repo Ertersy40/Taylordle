@@ -16,6 +16,15 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Louis George Cafe';
+    src: url('LouisGeorgeCafe.woff2') format('woff2'),
+        url('LouisGeorgeCafe.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --background-color: rgb(40, 40, 40);
     --text-color: white;
@@ -83,7 +92,7 @@ body {
 }
 
 .topButtons button{
-    height: 40px;
+    height: 47px;
     width: 35px;
     border-radius: 30px;
     background-color: var(--background-color);
@@ -160,7 +169,11 @@ h1 {
     }
 }
 
-input[type="search"], textarea, .suggestion-item, .grid-table, #submitBtn, #guessCounter, p, .modal, button, #errorBox {
+.grid-cell, p, .modal, button, #errorBox {
+    font-family: 'Louis George Cafe';
+    font-size: larger;
+}
+input[type="search"], textarea, .suggestion-item, .grid-header, #submitBtn, #guessCounter, p, .modal, button, #errorBox {
     font-family: 'TaylorSwiftHandwriting';
     font-size: larger;
 }
