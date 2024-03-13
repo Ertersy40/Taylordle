@@ -168,7 +168,11 @@ function showError(message) {
     // Switch to the slide-out animation after 3 seconds
     setTimeout(() => {
         errorBox.style.animation = 'slideOut 0.5s ease-in-out forwards';
+        
     }, 2500);
+    setTimeout(() => {
+        errorBox.textContent = '';
+    }, 3000)
 }
 
 function disableGameInput() {
