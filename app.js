@@ -313,7 +313,7 @@ function addGuess(guess) {
     appendCorrectnessCell(correctness.trackLengthMatch, trackInfo.track_length);
 
     cell = document.createElement('div');
-    cell.textContent = trackInfo.features.join(', ') || 'no features';
+    cell.textContent = trackInfo.features.join(', ') || 'No features';
     cell.className = 'grid-cell ' + correctness.sharedFeatures;
 
     // Append the new row to the guess table
