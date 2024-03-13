@@ -169,7 +169,7 @@ h1 {
     }
 }
 
-.grid-cell, p, .modal, button, #errorBox {
+.grid-cell, p, .modal, button, #errorBox, li {
     font-family: 'Louis George Cafe';
     font-size: larger;
 }
