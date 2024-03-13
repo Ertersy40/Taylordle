@@ -128,11 +128,6 @@ function closeModal() {
 function handleSubmit() {
     const songInput = document.getElementById('songInput').value;
 
-    if (guesses.length >= MAX_GUESSES) {
-        gameLost();
-        return;
-    }
-
     if (guesses.includes(songInput)) {
         showError("you've already guessed this song!")
         document.getElementById('songInput').value = '';
@@ -144,10 +139,14 @@ function handleSubmit() {
         guesses.push(songInput);
         updateGuessCounterDisplay();
         localStorage.setItem('guesses', JSON.stringify(guesses));
-
-    } else {
+    } else if (guesses.length >= MAX_GUESSES) {
+        gameLost();
+    }
+    else {
         showError('Invalid song name!');
     }
+
+    
 }
 
 showError("Sorry if you're experiencing issues with security! I'm working on it!")
@@ -319,7 +318,7 @@ function addGuess(guess) {
     // Check for win or lose conditions
     if (JSON.stringify(trackInfo) === JSON.stringify(targetInfo)) {
         gameWon();
-    } else if (guesses.length >= MAX_GUESSES) {
+    } else if (guesses.length >= MAX_GUESSES && guesses.indexOf(guess) === MAX_GUESSES - 1) {
         gameLost();
         disableGameInput();
     }
