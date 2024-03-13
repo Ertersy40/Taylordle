@@ -48,7 +48,7 @@ function pickRandomSong() {
 }
 
 function updateGuessCounterDisplay() {
-    document.getElementById('guesses').innerHTML = `Guesses: ${guesses.length}<span class="alternate-font">/</span>8`;
+    document.getElementById('guesses').innerHTML = `Guess: ${guesses.length}<span class="alternate-font">/</span>8`;
 }
 
 function showHelpModal() {
