@@ -428,6 +428,10 @@ li{
     align-items: center;
 }
 
+.modal-content p{
+    margin-bottom: -3px;
+}
+
 .closeModal{
     position: absolute;
     top: 10px;
