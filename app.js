@@ -149,8 +149,6 @@ function handleSubmit() {
     
 }
 
-showError("Sorry if you're experiencing issues with security! I'm working on it!")
-
 function showError(message) {
     // Create the error box if it doesn't exist
     if (!document.querySelector('#errorBox')) {
