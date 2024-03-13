@@ -132,33 +132,32 @@ function handleSubmit() {
     });
     
     const songInput = document.getElementById('songInput').value;
+    const inputInfo = getTrackInfo(songInput)
 
     if (guesses.includes(songInput)) {
         showError("you've already guessed this song!")
         document.getElementById('songInput').value = '';
         document.getElementById('suggestions').style.display = 'none';
     } else if (allTrackNames.includes(songInput)) {
-        gtag('event', 'game_won', {
-            'event_category': 'Game Outcome',
-            'event_label': 'Win'
-        });
+
         document.getElementById('songInput').value = '';
         document.getElementById('suggestions').style.display = 'none';
         addGuess(songInput);
         guesses.push(songInput);
         updateGuessCounterDisplay();
         localStorage.setItem('guesses', JSON.stringify(guesses));
-    } else if (guesses.length >= MAX_GUESSES) {
+    } 
+    else {
+        showError('Invalid song name!');
+    }
+
+    if (guesses.length >= MAX_GUESSES && JSON.stringify(inputInfo) !== JSON.stringify(targetInfo)) {
         gtag('event', 'game_lose', {
             'event_category': 'Game Outcome',
             'event_label': 'Lose'
         });
         gameLost();
     }
-    else {
-        showError('Invalid song name!');
-    }
-
     
 }
 
@@ -206,6 +205,10 @@ function disableGameInput() {
 
 
 function gameWon() {
+    gtag('event', 'game_won', {
+        'event_category': 'Game Outcome',
+        'event_label': 'Win'
+    });
     
     const today = new Date();
     const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'); // Format YYYY-MM-DD
@@ -227,6 +230,12 @@ function gameWon() {
 }
 
 function gameLost() {
+    
+    gtag('event', 'game_lose', {
+        'event_category': 'Game Outcome',
+        'event_label': 'Lose'
+    });
+    
     disableGameInput();
     const today = new Date();
     const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'); // Format YYYY-MM-DD
@@ -333,7 +342,7 @@ function addGuess(guess) {
     // Check for win or lose conditions
     if (JSON.stringify(trackInfo) === JSON.stringify(targetInfo)) {
         gameWon();
-    } else if (guesses.length >= MAX_GUESSES && guesses.indexOf(guess) === MAX_GUESSES - 1) {
+    } else if (guesses.length >= MAX_GUESSES && guesses[guesses.length - 1] === guess) {
         gameLost();
         disableGameInput();
     }
