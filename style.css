@@ -17,7 +17,7 @@
 }
 
 @font-face {
-    font-family: './fonts/Louis George Cafe';
+    font-family: 'Louis George Cafe';
     src: url('./fonts/LouisGeorgeCafe.woff2') format('woff2'),
         url('./fonts/LouisGeorgeCafe.woff') format('woff');
     font-weight: normal;

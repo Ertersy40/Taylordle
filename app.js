@@ -126,6 +126,11 @@ function closeModal() {
 }
 
 function handleSubmit() {
+    gtag('event', 'submit_word', {
+        'event_category': 'Game Interaction',
+        'event_label': 'Word Submission'
+    });
+    
     const songInput = document.getElementById('songInput').value;
 
     if (guesses.includes(songInput)) {
@@ -133,6 +138,10 @@ function handleSubmit() {
         document.getElementById('songInput').value = '';
         document.getElementById('suggestions').style.display = 'none';
     } else if (allTrackNames.includes(songInput)) {
+        gtag('event', 'game_won', {
+            'event_category': 'Game Outcome',
+            'event_label': 'Win'
+        });
         document.getElementById('songInput').value = '';
         document.getElementById('suggestions').style.display = 'none';
         addGuess(songInput);
@@ -140,6 +149,10 @@ function handleSubmit() {
         updateGuessCounterDisplay();
         localStorage.setItem('guesses', JSON.stringify(guesses));
     } else if (guesses.length >= MAX_GUESSES) {
+        gtag('event', 'game_lose', {
+            'event_category': 'Game Outcome',
+            'event_label': 'Lose'
+        });
         gameLost();
     }
     else {
