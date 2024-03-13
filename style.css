@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Birds of Paradise';
-    src: url('BirdsofParadise.woff2') format('woff2'),
-        url('BirdsofParadise.woff') format('woff');
+    src: url('./fonts/BirdsofParadise.woff2') format('woff2'),
+        url('./fonts/BirdsofParadise.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -9,17 +9,17 @@
 
 @font-face {
     font-family: 'TaylorSwiftHandwriting';
-    src: url('TaylorSwiftHandwriting.woff2') format('woff2'),
-        url('TaylorSwiftHandwriting.woff') format('woff');
+    src: url('./fonts/TaylorSwiftHandwriting.woff2') format('woff2'),
+        url('./fonts/TaylorSwiftHandwriting.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Louis George Cafe';
-    src: url('LouisGeorgeCafe.woff2') format('woff2'),
-        url('LouisGeorgeCafe.woff') format('woff');
+    font-family: './fonts/Louis George Cafe';
+    src: url('./fonts/LouisGeorgeCafe.woff2') format('woff2'),
+        url('./fonts/LouisGeorgeCafe.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
