@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Taylordle - Wordle for Taylor Swift!</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" type="image/x-icon" href="tswizzle.ico">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9512385908704001"
      crossorigin="anonymous"></script>
@@ -20,9 +21,15 @@
     gtag('config', 'G-TCKG7Q93BE');
     </script>
     <body>
+        <div class="background">
+            <div class="image-layer easy" style="opacity: 1;"></div>
+            <div class="image-layer hard" style="opacity: 0;"></div>
+        </div>
+          
         <!-- Top Buttons -->
         <div class="topButtons">
             <button onclick="showHelpModal()">?</button>
+            <button id="settingsButton" onclick="showSettingsModal()"><i class="fa fa-gear" style="font-size:28px;"></i></button>
         </div>
         <div class="contentContainer">
             <h1>Taylordle.xyz</h1>
@@ -58,6 +65,22 @@
                         <li><span class="yellowText">Yellow</span> in the <b>features</b> column indicates that <b>one</b> or more of the <b>featured artists</b> is correct.</li>
                     </ul>
                     <button onclick="closeModal()">Start</button>
+                </div>
+            </div>
+
+            <!-- Settings Modal -->
+            <div id="settingsModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="closeModal" onclick="closeModal()">&times;</span>
+                    <p><b>Settings</b></p>
+                    <div class="option">
+                        <p>Hard mode</p>
+                        <p class="optionDescription">All Deluxe and From the Vault songs included</p>
+                        <label class="switch">
+                            <input type="checkbox" id="HardSwitch">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
             

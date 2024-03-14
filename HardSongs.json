@@ -14,7 +14,7 @@
                 "features": []
             },
             {
-                "track_name": "Teardrops On My Guitar - Radio Single Remix",
+                "track_name": "Teardrops On My Guitar",
                 "track_length": "3:23",
                 "features": []
             },
@@ -71,11 +71,6 @@
             {
                 "track_name": "A Perfectly Good Heart",
                 "track_length": "3:40",
-                "features": []
-            },
-            {
-                "track_name": "Teardrops on My Guitar - Pop Version",
-                "track_length": "2:59",
                 "features": []
             }
         ]
@@ -149,6 +144,40 @@
             {
                 "track_name": "Change",
                 "track_length": "4:40",
+                "features": []
+            },
+            {
+                "track_name": "You All Over Me (From The Vault)",
+                "track_length": "3:40",
+                "features": [
+                    "Maren Morris"
+                ]
+            },
+            {
+                "track_name": "Mr. Perfectly Fine (From The Vault)",
+                "track_length": "4:37",
+                "features": []
+            },
+            {
+                "track_name": "We Were Happy (From The Vault)",
+                "track_length": "4:04",
+                "features": []
+            },
+            {
+                "track_name": "That's When (From The Vault)",
+                "track_length": "3:09",
+                "features": [
+                    "Keith Urban"
+                ]
+            },
+            {
+                "track_name": "Don't You (From The Vault)",
+                "track_length": "3:28",
+                "features": []
+            },
+            {
+                "track_name": "Bye Bye Baby (From The Vault)",
+                "track_length": "4:02",
                 "features": []
             }
         ]
@@ -262,6 +291,40 @@
                 "track_name": "Long Live",
                 "track_length": "5:17",
                 "features": []
+            },
+            {
+                "track_name": "Electric Touch (From The Vault)",
+                "track_length": "4:26",
+                "features": [
+                    "Fall Out Boy"
+                ]
+            },
+            {
+                "track_name": "When Emma Falls in Love (From The Vault)",
+                "track_length": "4:12",
+                "features": []
+            },
+            {
+                "track_name": "I Can See You (From The Vault)",
+                "track_length": "4:33",
+                "features": []
+            },
+            {
+                "track_name": "Castles Crumbling (From The Vault)",
+                "track_length": "5:06",
+                "features": [
+                    "Hayley Williams"
+                ]
+            },
+            {
+                "track_name": "Foolish One (From The Vault)",
+                "track_length": "5:11",
+                "features": []
+            },
+            {
+                "track_name": "Timeless (From The Vault)",
+                "track_length": "5:21",
+                "features": []
             }
         ]
     },
@@ -270,11 +333,6 @@
         "img_url": "https://i.scdn.co/image/ab67616d0000b2732e4ec3175d848eca7b76b07f",
         "tracks": [
             {
-                "track_name": "Ours",
-                "track_length": "3:57",
-                "features": []
-            },
-            {
                 "track_name": "If This Was A Movie",
                 "track_length": "3:54",
                 "features": []
@@ -282,21 +340,6 @@
             {
                 "track_name": "Superman",
                 "track_length": "4:35",
-                "features": []
-            },
-            {
-                "track_name": "Back To December - Acoustic",
-                "track_length": "4:52",
-                "features": []
-            },
-            {
-                "track_name": "Haunted - Acoustic Version",
-                "track_length": "3:37",
-                "features": []
-            },
-            {
-                "track_name": "Mine - POP Mix",
-                "track_length": "3:50",
                 "features": []
             }
         ]
@@ -388,6 +431,57 @@
                 "track_name": "Begin Again",
                 "track_length": "3:57",
                 "features": []
+            },
+            {
+                "track_name": "Better Man (From The Vault)",
+                "track_length": "4:57",
+                "features": []
+            },
+            {
+                "track_name": "Nothing New (From The Vault)",
+                "track_length": "4:18",
+                "features": [
+                    "Phoebe Bridgers"
+                ]
+            },
+            {
+                "track_name": "Babe (From The Vault)",
+                "track_length": "3:44",
+                "features": []
+            },
+            {
+                "track_name": "Message In A Bottle (From The Vault)",
+                "track_length": "3:45",
+                "features": []
+            },
+            {
+                "track_name": "I Bet You Think About Me (From The Vault)",
+                "track_length": "4:45",
+                "features": [
+                    "Chris Stapleton"
+                ]
+            },
+            {
+                "track_name": "Forever Winter (From The Vault)",
+                "track_length": "4:23",
+                "features": []
+            },
+            {
+                "track_name": "Run (From The Vault)",
+                "track_length": "4:00",
+                "features": [
+                    "Ed Sheeran"
+                ]
+            },
+            {
+                "track_name": "The Very First Night (From The Vault)",
+                "track_length": "3:20",
+                "features": []
+            },
+            {
+                "track_name": "All Too Well (10 Minute Version) (From The Vault)",
+                "track_length": "10:13",
+                "features": []
             }
         ]
     },
@@ -396,87 +490,18 @@
         "img_url": "https://i.scdn.co/image/ab67616d0000b273a7613d346501b828b56a0bc3",
         "tracks": [
             {
-                "track_name": "State Of Grace",
-                "track_length": "4:55",
+                "track_name": "The Moment I Knew",
+                "track_length": "4:45",
                 "features": []
             },
             {
-                "track_name": "Red",
+                "track_name": "Come Back...Be Here",
+                "track_length": "3:42",
+                "features": []
+            },
+            {
+                "track_name": "Girl At Home",
                 "track_length": "3:40",
-                "features": []
-            },
-            {
-                "track_name": "Treacherous",
-                "track_length": "4:00",
-                "features": []
-            },
-            {
-                "track_name": "I Knew You Were Trouble.",
-                "track_length": "3:37",
-                "features": []
-            },
-            {
-                "track_name": "All Too Well",
-                "track_length": "5:27",
-                "features": []
-            },
-            {
-                "track_name": "22",
-                "track_length": "3:50",
-                "features": []
-            },
-            {
-                "track_name": "I Almost Do",
-                "track_length": "4:02",
-                "features": []
-            },
-            {
-                "track_name": "We Are Never Ever Getting Back Together",
-                "track_length": "3:11",
-                "features": []
-            },
-            {
-                "track_name": "Stay Stay Stay",
-                "track_length": "3:24",
-                "features": []
-            },
-            {
-                "track_name": "The Last Time",
-                "track_length": "4:58",
-                "features": [
-                    "Gary Lightbody"
-                ]
-            },
-            {
-                "track_name": "Holy Ground",
-                "track_length": "3:21",
-                "features": []
-            },
-            {
-                "track_name": "Sad Beautiful Tragic",
-                "track_length": "4:43",
-                "features": []
-            },
-            {
-                "track_name": "The Lucky One",
-                "track_length": "4:00",
-                "features": []
-            },
-            {
-                "track_name": "Everything Has Changed",
-                "track_length": "4:03",
-                "features": [
-                    "Ed Sheeran"
-                ]
-            },
-            {
-                "track_name": "Starlight",
-                "track_length": "3:37",
-                "features": []
-            },
-            {
-                "track_name": "Begin Again",
-                "track_length": "3:57",
                 "features": []
             }
         ]
@@ -549,6 +574,31 @@
                 "track_name": "Clean",
                 "track_length": "4:31",
                 "features": []
+            },
+            {
+                "track_name": "\"Slut!\" (From The Vault)",
+                "track_length": "3:00",
+                "features": []
+            },
+            {
+                "track_name": "Say Don't Go (From The Vault)",
+                "track_length": "4:39",
+                "features": []
+            },
+            {
+                "track_name": "Now That We Don't Talk (From The Vault)",
+                "track_length": "2:26",
+                "features": []
+            },
+            {
+                "track_name": "Suburban Legends (From The Vault)",
+                "track_length": "2:51",
+                "features": []
+            },
+            {
+                "track_name": "Is It Over Now? (From The Vault)",
+                "track_length": "3:49",
+                "features": []
             }
         ]
     },
@@ -569,21 +619,6 @@
             {
                 "track_name": "New Romantics",
                 "track_length": "3:50",
-                "features": []
-            },
-            {
-                "track_name": "I Know Places - Voice Memo",
-                "track_length": "3:36",
-                "features": []
-            },
-            {
-                "track_name": "I Wish You Would - Voice Memo",
-                "track_length": "1:47",
-                "features": []
-            },
-            {
-                "track_name": "Blank Space - Voice Memo",
-                "track_length": "2:11",
                 "features": []
             }
         ]
@@ -732,7 +767,7 @@
                 "features": []
             },
             {
-                "track_name": "Soon You'll Get Better (feat. The Chicks)",
+                "track_name": "Soon You'll Get Better",
                 "track_length": "3:21",
                 "features": [
                     "The Chicks"
@@ -754,7 +789,7 @@
                 "features": []
             },
             {
-                "track_name": "ME! (feat. Brendon Urie of Panic! At The Disco)",
+                "track_name": "ME!",
                 "track_length": "3:13",
                 "features": [
                     "Brendon Urie",
@@ -793,7 +828,7 @@
                 "features": []
             },
             {
-                "track_name": "exile (feat. Bon Iver)",
+                "track_name": "exile",
                 "track_length": "4:45",
                 "features": [
                     "Bon Iver"
@@ -892,7 +927,7 @@
                 "features": []
             },
             {
-                "track_name": "\u2018tis the damn season",
+                "track_name": "'tis the damn season",
                 "track_length": "3:49",
                 "features": []
             },
@@ -902,7 +937,7 @@
                 "features": []
             },
             {
-                "track_name": "no body, no crime (feat. HAIM)",
+                "track_name": "no body, no crime",
                 "track_length": "3:35",
                 "features": [
                     "HAIM"
@@ -919,7 +954,7 @@
                 "features": []
             },
             {
-                "track_name": "coney island (feat. The National)",
+                "track_name": "coney island",
                 "track_length": "4:35",
                 "features": [
                     "The National"
@@ -964,17 +999,18 @@
         "img_url": "https://i.scdn.co/image/ab67616d0000b27390fd9741e1838115cd90b3b6",
         "tracks": [
             {
-                "track_name": "right where you left me - bonus track",
+                "track_name": "right where you left me",
                 "track_length": "4:05",
                 "features": []
             },
             {
-                "track_name": "it's time to go - bonus track",
+                "track_name": "it's time to go",
                 "track_length": "4:14",
                 "features": []
             }
         ]
     },
+
     {
         "album_name": "Midnights",
         "img_url": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",
@@ -995,7 +1031,7 @@
                 "features": []
             },
             {
-                "track_name": "Snow On The Beach (feat. Lana Del Rey)",
+                "track_name": "Snow On The Beach",
                 "track_length": "4:16",
                 "features": [
                     "Lana Del Rey"

@@ -1,4 +1,4 @@
-
+//TODO: add a little description of what hard mode is in settings
 if (!localStorage.getItem('helpShown')){
     localStorage.setItem('helpShown', true);
     showHelpModal()
@@ -9,6 +9,26 @@ let targetInfo = {};
 let guesses = [];
 let gameWonCheck = false;
 let gameLostCheck = false;
+let hardGameWonCheck = false;
+let hardGameLostCheck = false;
+let changingModes = false;
+
+const easyLayer = document.querySelector('.background .easy');
+const hardLayer = document.querySelector('.background .hard');
+
+let hardMode = false;
+if (localStorage.getItem('hard') && localStorage.getItem('hard') === 'true'){
+    // console.log("HARD MODE")
+    hardMode = true
+    hardLayer.style.opacity = 1;
+    easyLayer.style.opacity = 0;
+}else{
+    // console.log("Easy mode!")
+    localStorage.setItem('hard', false)
+    easyLayer.style.opacity = 1;
+    hardLayer.style.opacity = 0;
+}
+
 
 function pickRandomSong() {
     // Assuming allTrackNames is an array of song names available globally
@@ -56,8 +76,14 @@ function showHelpModal() {
     document.getElementById('helpModal').style.display = "flex";
 }
 
+function showSettingsModal() {
+    document.getElementById('HardSwitch').checked = hardMode;
+    disableScrolling();
+    document.getElementById('settingsModal').style.display = "flex";
+}
+
 function showResults() {
-    if (gameWonCheck){
+    if ((gameWonCheck && !hardMode) || (hardGameWonCheck && hardMode)){
         showWinModal()
     } else {
         showLoseModal()
@@ -87,24 +113,24 @@ function enableScroll() {
 
 function revealTarget(modal) {
     const container = document.getElementById(`correctSong${modal}`);
-    if (!container.querySelector('.target-image')) {
-        const img = document.createElement('img');
-        img.src = targetInfo.img_url;
-        img.style.width = '150px';
-        img.style.height = 'auto';
-        img.classList.add('target-image');
-        container.appendChild(img);
+    container.innerHTML = ""
+    const img = document.createElement('img');
+    img.src = targetInfo.img_url;
+    img.style.width = '150px';
+    img.style.height = 'auto';
+    img.classList.add('target-image');
+    container.appendChild(img);
 
-        const track_name = document.createElement('p');
-        track_name.textContent = targetInfo.track_name;
-        container.appendChild(track_name);
+    const track_name = document.createElement('p');
+    track_name.textContent = targetInfo.track_name;
+    container.appendChild(track_name);
 
-        if (targetInfo.features && targetInfo.features.length > 0) {
-            const ft = document.createElement('p');
-            ft.textContent = `ft. ${targetInfo.features.join(', ')}`;
-            container.appendChild(ft);
-        }
+    if (targetInfo.features && targetInfo.features.length > 0) {
+        const ft = document.createElement('p');
+        ft.textContent = `ft. ${targetInfo.features.join(', ')}`;
+        container.appendChild(ft);
     }
+    
 }
 
 function showStats(modal) {
@@ -124,6 +150,69 @@ function closeModal() {
         modal.style.display = "none";
     });
 }
+
+// Get the checkbox element
+const hardSwitch = document.getElementById('HardSwitch');
+
+// Add an event listener for the 'change' event
+hardSwitch.addEventListener('change', function() {
+    changingModes = true
+    guesses = [];
+    document.querySelector('.grid-table').innerHTML = ''
+    localStorage.setItem('hard', this.checked)
+    hardMode = this.checked
+
+    const today = new Date();
+    const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'); // Format YYYY-MM-DD
+    // console.log('Mode:', this.checked ? 'hard' : 'easy')
+    const lastGame = localStorage.getItem(hardMode ? 'lastHardGame' : 'lastGame');
+    // console.log(lastGame)
+    if ((lastGame && lastGame === formattedToday.toString())){
+        disableGameInput();
+    }else{
+        enableGameInput();
+    }
+
+    if (this.checked) {
+        // Hard Mode is on!
+        hardLayer.style.opacity = 1;
+        easyLayer.style.opacity = 0;
+
+        //load the hard mode random song of today
+        //reset guesses to whatever the localstorage says
+        //load the guesses in
+        
+        fetchAlbums('hardSongs.json').then(trackNames => {
+            allTrackNames = trackNames;
+            pickRandomSong();
+            checkAndUpdateDate();
+            updateGuessCounterDisplay();
+        });
+        adjustBodyHeight();
+        
+        
+    } else {
+        // Hard Mode is off!
+        easyLayer.style.opacity = 1;
+        hardLayer.style.opacity = 0;
+
+        //load the easy mode random song of today
+        //reset guesses to whatever the localstorage says
+        //load the guesses in
+        fetchAlbums('songs.json').then(trackNames => {
+            allTrackNames = trackNames;
+            pickRandomSong();
+            checkAndUpdateDate();
+            updateGuessCounterDisplay();
+        });
+        adjustBodyHeight();
+
+    }
+    setTimeout(() => {
+        changingModes = false;
+    }, 1000)
+});
+
 
 function handleSubmit() {
     gtag('event', 'submit_word', {
@@ -145,7 +234,7 @@ function handleSubmit() {
         addGuess(songInput);
         guesses.push(songInput);
         updateGuessCounterDisplay();
-        localStorage.setItem('guesses', JSON.stringify(guesses));
+        localStorage.setItem(hardMode ? 'hardguesses' : 'guesses', JSON.stringify(guesses));
     } 
     else {
         showError('Invalid song name!');
@@ -154,7 +243,8 @@ function handleSubmit() {
     if (guesses.length >= MAX_GUESSES && JSON.stringify(inputInfo) !== JSON.stringify(targetInfo)) {
         gtag('event', 'game_lose', {
             'event_category': 'Game Outcome',
-            'event_label': 'Lose'
+            'event_label': 'Lose',
+            'game_mode': hardMode ? 'hard' : 'easy'
         });
         gameLost();
     }
@@ -186,6 +276,7 @@ function showError(message) {
 }
 
 function disableGameInput() {
+    // console.log('disabling game input')
     // Disable the input field
     const songInputField = document.getElementById('songInput');
     songInputField.disabled = true;
@@ -203,8 +294,28 @@ function disableGameInput() {
     resultsButton.style.display = 'block'
 }
 
+function enableGameInput() {
+    // console.log('enabling game input')
+    // enable the input field
+    const songInputField = document.getElementById('songInput');
+    songInputField.disabled = false;
+    songInputField.style.display = 'block'
+
+    const inputUnderline = document.getElementById('underline')
+    inputUnderline.style.display = 'block'
+
+    // enable the submit button
+    const submitButton = document.getElementById('submitBtn');
+    submitButton.disabled = false;
+    submitButton.style.display = 'block'
+
+    const resultsButton = document.getElementById('results');
+    resultsButton.style.display = 'none'
+}
+
 
 function gameWon() {
+    // console.log("GAME WOOOON! WOOO!")
     gtag('event', 'game_won', {
         'event_category': 'Game Outcome',
         'event_label': 'Win'
@@ -213,9 +324,9 @@ function gameWon() {
     const today = new Date();
     const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'); // Format YYYY-MM-DD
     
-    const lastGame = localStorage.getItem('lastGame')
+    const lastGame = localStorage.getItem(hardMode ? 'lastHardGame' : 'lastGame');
     if (!(lastGame && lastGame === formattedToday.toString())){
-        localStorage.setItem('lastGame', formattedToday)
+        localStorage.setItem( hardMode ? 'lastHardGame' : 'lastGame', formattedToday)
         localStorage.setItem('streak', parseInt(localStorage.getItem('streak') || 0) + 1);
         localStorage.setItem('correct', parseInt(localStorage.getItem('correct') || 0) + 1);
         localStorage.setItem('gamesPlayed', parseInt(localStorage.getItem('gamesPlayed') || 0) + 1);
@@ -223,13 +334,22 @@ function gameWon() {
     disableGameInput();
 
     
-    if (!gameWonCheck){
+    if (!gameWonCheck && !hardMode){
         gameWonCheck = true;
-        showWinModal();
+        if (!changingModes){
+            showWinModal();
+        }
+    } else if (!hardGameWonCheck && hardMode){
+        hardGameWonCheck = true;
+        if (!changingModes){
+            showWinModal();
+        }
     }
 }
 
 function gameLost() {
+
+    // console.log("Oh no! Game lost :(")
     
     gtag('event', 'game_lose', {
         'event_category': 'Game Outcome',
@@ -239,15 +359,18 @@ function gameLost() {
     disableGameInput();
     const today = new Date();
     const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'); // Format YYYY-MM-DD
-    const lastGame = localStorage.getItem('lastGame')
+    const lastGame = localStorage.getItem( hardMode ? 'lastHardGame' : 'lastGame' )
     if (!(lastGame && lastGame === formattedToday.toString())){
-        localStorage.setItem('lastGame', formattedToday)
+        localStorage.setItem(hardMode ? 'lastHardGame' : 'lastGame', formattedToday)
         localStorage.setItem('streak', 0);
         localStorage.setItem('gamesPlayed', parseInt(localStorage.getItem('gamesPlayed') || 0) + 1);
     }
     
-    if (!gameLostCheck){
+    if (!gameLostCheck && !hardMode){
         gameLostCheck = true;
+        showLoseModal();
+    } else if (!hardGameLostCheck && hardMode){
+        hardGameLostCheck = true;
         showLoseModal();
     }
 }
@@ -280,6 +403,9 @@ function addGuess(guess) {
     img.style.width = '50px'; // Adjust size as needed
     img.style.height = 'auto';
     img.style.marginRight = '10px'; // Add some space between the image and the arrow
+    if (trackInfo.album_name.toLowerCase().includes('edition') || trackInfo.album_name.toLowerCase().includes('deluxe')){
+        img.classList.add('deluxe')
+    }
 
     let arrowSpan = document.createElement('span'); // Create a new span for the symbol
     arrowSpan.className = "arrow"; // Assign a base class for styling
@@ -362,10 +488,10 @@ function adjustBodyHeight() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetchAlbums().then(trackNames => {
+    fetchAlbums(hardMode ? 'hardSongs.json' : 'songs.json').then(trackNames => {
         allTrackNames = trackNames;
         pickRandomSong();
-        checkAndUpdateDate(); // Call this function to check the date and load or reset guesses
+        checkAndUpdateDate();
         updateGuessCounterDisplay();
     });
     adjustBodyHeight();
@@ -389,12 +515,13 @@ function checkAndUpdateDate() {
         loadGuesses(); // Load guesses from localStorage if it's the same day
     } else {
         localStorage.setItem('guesses', JSON.stringify([])); // Reset guesses
+        localStorage.setItem('hardguesses', JSON.stringify([])); // Reset hard mode guesses
         localStorage.setItem('lastVisit', formattedToday); // Update the last visit date
     }
 }
 
 function loadGuesses() {
-    guesses = JSON.parse(localStorage.getItem('guesses')) || [];
+    guesses = JSON.parse((localStorage.getItem((hardMode ? 'hard' : '') + 'guesses') || '[]'));
     guesses.forEach(guess => addGuess(guess));
 }
 
@@ -403,8 +530,8 @@ function loadGuesses() {
 let albumsData = [];
 
 // Adjust the fetchAlbums function to also set albumsData
-function fetchAlbums() {
-    return fetch('songs.json') // Start the fetch operation
+function fetchAlbums(file) {
+    return fetch(file) // Start the fetch operation
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -424,11 +551,16 @@ function fetchAlbums() {
 
 function populateAlbumsDiv(albumsData) {
     const albumsContainer = document.getElementById('albumContainer');
+    albumsContainer.innerHTML = '';
+    // console.log(albumsData)
     albumsData.forEach((album, index) => {
         const img = document.createElement('img');
         img.className = 'album';
         img.src = album.img_url;
         img.alt = album.album_name;
+        if (album.album_name.toLowerCase().includes('edition') || album.album_name.toLowerCase().includes('deluxe')){
+            img.classList.add('deluxe')
+        }
 
         // Apply the wave animation with a dynamic delay
         img.style.animation = 'wave 2s infinite';
@@ -635,7 +767,7 @@ function shareContent() {
     const timeDiff = currentDate - startDate;
     const dayNumber = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-    const textToShare = `Taylordle ${dayNumber}: ${guesses.length}/8\n\n${emojis}\nwww.Taylordle.xyz `;
+    const textToShare = `Taylordle ${dayNumber}${hardMode ? ' Hard Mode' : ''}: ${guesses.length}/8\n\n${emojis}\nwww.Taylordle.xyz `;
 
     // Assuming desktops are less likely to be touch-enabled, use this as a heuristic
     // This is not a perfect check, as some desktops are touch-enabled

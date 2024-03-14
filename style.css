@@ -63,28 +63,61 @@ body {
 /* Class when body content fits within the viewport */
 .viewport-height {
     height: 100vh;
-    background-color: var(--background-color); /* Fallback color */
-    background-image: 
-    radial-gradient(circle at 20% 35%, #be2e1e, transparent 50%),
-    radial-gradient(circle at 75% 25%, #632406, transparent 50%),
-    radial-gradient(circle at 50% 60%, #d96fd9, transparent 50%);
-    background-repeat: no-repeat;
 }
 
 /* Class when body content exceeds the viewport */
 .content-height {
     height: 100%; /* Height based on content */
-    background-color: var(--background-color); /* Fallback color */
-    background-image: 
-    radial-gradient(circle at 20% 35%, #be2e1e, transparent 50%),
-    radial-gradient(circle at 75% 25%, #632406, transparent 50%),
-    radial-gradient(circle at 50% 60%, #d96fd9, transparent 50%);
-    background-repeat: no-repeat;
     padding-bottom: 100px;
+}
+
+.viewport-height, .content-height {
+    background-color: var(--background-color); /* Fallback color */
+    background-repeat: no-repeat;
+}
+
+
+.background {
+    position: fixed; /* Use fixed or absolute depending on your needs */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keep the background behind other content */
+}
+  
+.image-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s ease;
+    opacity: 0; /* Start invisible */
+}
+
+/* Hard mode */
+.hard{
+    background-image: 
+        radial-gradient(circle at 20% 35%, #be2e1e, transparent 50%),
+        radial-gradient(circle at 75% 25%, #632406, transparent 50%),
+        radial-gradient(circle at 50% 60%, #d96fd9, transparent 50%);
+}
+
+/* Easy mode */
+.easy{
+    background-image: 
+    radial-gradient(circle at 20% 35%, #2f92c4, transparent 50%),
+    radial-gradient(circle at 75% 25%, #d7a9eb, transparent 50%),
+    radial-gradient(circle at 50% 60%, #da5869, transparent 50%);
+    opacity: 1;
+}
+
+.hard, .easy {
+    background-size: cover;
 }
 
 
 .topButtons{
+    display: flex;
     z-index: 1;
     position: fixed;
     top: 20px;
@@ -92,11 +125,19 @@ body {
 }
 
 .topButtons button{
-    height: 47px;
-    width: 35px;
-    border-radius: 30px;
-    background-color: var(--background-color);
-    border: 3px solid var(--button-color);
+    margin-right: 10px;
+    height: 57px;
+    width: 49px;
+    border-radius: 24px;
+    background-color: var(--button-color);
+    border: 3px solid white;
+}
+
+#settingsButton i{
+    transition: transform .2s ease-in-out;
+}
+#settingsButton i:hover{
+    transform: rotate(45deg) scale(1.1);
 }
 
 .contentContainer{
@@ -158,6 +199,13 @@ h1 {
     height: auto;
     margin-right: 10px;
     animation-timing-function: ease-in-out;
+}
+
+.deluxe{
+    border: 3px solid gold;
+    /* border-image: linear-gradient(#f3e15a, #ac7809) 30;
+    border-width: 3px;
+    border-style: solid; */
 }
 
 @keyframes wave {
@@ -555,3 +603,86 @@ li{
     vertical-align: middle; /* Aligns the arrow vertically center if inline-block */
     /* Additional styling as needed */
 }
+
+.option{
+    position: relative;
+    width: 100%;
+    margin-block: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.option p{
+    text-align: left;
+    margin-top: 0px;
+}
+
+.optionDescription{
+    font-size: small;
+    color: rgba(255, 255, 255, 0.815);
+    position: absolute;
+    bottom: -10px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(23px);
+    -ms-transform: translateX(23px);
+    transform: translateX(23px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
