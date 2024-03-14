@@ -382,35 +382,7 @@ button:hover {
     vertical-align: middle; /* This may not be necessary with flexbox alignment */
 }
 
-@media (max-width: 768px) {
-    .grid-header{
-        font-size: large;
-    }
-    .grid-cell {
-        padding: 2px;
-        font-size: large;
-    }
-    .album{
-        width: 50px;
-    }
-    .contentContainer{
-        padding-inline: 10px;
-    }
-}
 
-/* Media query for very small screens */
-@media (max-width: 480px) {
-    .contentContainer{
-        padding-inline: 10px;
-    }
-    .grid-header{
-        font-size: small;
-    }
-    .grid-cell {
-        padding: 2px;
-        font-size: small;
-    }
-}
 
 /* Correctness indicators */
 .correct {
@@ -686,3 +658,40 @@ li{
   .slider.round:before {
     border-radius: 50%;
   }
+
+  @media (max-width: 768px) {
+    .grid-header{
+        font-size: large;
+    }
+    .grid-cell {
+        padding: 2px;
+        font-size: large;
+    }
+    .album{
+        width: 50px;
+    }
+    .contentContainer{
+        padding-inline: 10px;
+    }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    .contentContainer{
+        padding-inline: 10px;
+    }
+    .grid-header{
+        font-size: small;
+    }
+    .grid-cell {
+        padding: 2px;
+        font-size: small;
+    }
+    
+}
+
+@media (max-width: 400px) {
+    .optionDescription{
+        bottom: -25px;
+    }
+}
