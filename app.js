@@ -1,8 +1,9 @@
-//TODO: add a little description of what hard mode is in settings
 if (!localStorage.getItem('helpShown')){
     localStorage.setItem('helpShown', true);
     showHelpModal()
 }
+
+showError("The track number now follows tracklist not numeric order!", 8)
 
 const MAX_GUESSES = 8;
 let targetInfo = {};
@@ -251,7 +252,7 @@ function handleSubmit() {
     
 }
 
-function showError(message) {
+function showError(message, seconds=2.5) {
     // Create the error box if it doesn't exist
     if (!document.querySelector('#errorBox')) {
         const errorBox = document.createElement('div');
@@ -269,10 +270,10 @@ function showError(message) {
     setTimeout(() => {
         errorBox.style.animation = 'slideOut 0.5s ease-in-out forwards';
         
-    }, 2500);
+    }, seconds * 1000);
     setTimeout(() => {
         errorBox.textContent = '';
-    }, 3000)
+    }, seconds * 1000 + 500)
 }
 
 function disableGameInput() {
@@ -531,7 +532,7 @@ let albumsData = [];
 
 // Adjust the fetchAlbums function to also set albumsData
 function fetchAlbums(file) {
-    console.log('getting', file)
+    // console.log('getting', file)
     return fetch(file) // Start the fetch operation
         .then(response => {
             if (!response.ok) {
@@ -685,9 +686,9 @@ function compareToTarget(trackInfo) {
     if (trackNumberDifference === 0) {
         comparisonResults.trackNumberMatch = "correct";
     } else if (trackNumberDifference === 1 || trackNumberDifference === 2) {
-        comparisonResults.trackNumberMatch = targetInfo.track_number > trackInfo.track_number ? "before close" : "after close";
+        comparisonResults.trackNumberMatch = targetInfo.track_number < trackInfo.track_number ? "before close" : "after close";
     } else {
-        comparisonResults.trackNumberMatch = targetInfo.track_number > trackInfo.track_number ? "before" : "after";
+        comparisonResults.trackNumberMatch = targetInfo.track_number < trackInfo.track_number ? "before" : "after";
     }
 
     // Track length comparison
