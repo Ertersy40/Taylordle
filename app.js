@@ -158,7 +158,7 @@ const hardSwitch = document.getElementById('HardSwitch');
 hardSwitch.addEventListener('change', function() {
     changingModes = true
     guesses = [];
-    document.querySelector('.grid-table').innerHTML = ''
+    document.querySelector('.grid-table').innerHTML = '<div class="grid-header">Track Name</div><div class="grid-header">Album</div><div class="grid-header">Track Number</div><div class="grid-header">Track Length</div><div class="grid-header">Features</div>'
     localStorage.setItem('hard', this.checked)
     hardMode = this.checked
 
@@ -531,6 +531,7 @@ let albumsData = [];
 
 // Adjust the fetchAlbums function to also set albumsData
 function fetchAlbums(file) {
+    console.log('getting', file)
     return fetch(file) // Start the fetch operation
         .then(response => {
             if (!response.ok) {
