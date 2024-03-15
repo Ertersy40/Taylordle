@@ -517,12 +517,12 @@ li{
     overflow: hidden;
 }
 
-.btn-container{
+/* .btn-container{
     z-index: 0;
     position: fixed;
     bottom: 10px;
     left: 30px;
-}
+} */
 
 .ShareButton{
     width: 70%;

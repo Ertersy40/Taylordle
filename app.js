@@ -802,6 +802,7 @@ function shareContent() {
         } else {
             // Fallback if Web Share API is not supported
             copyToClipboard(textToShare);
+            
         }
     } else {
         // Likely a desktop, so directly copy to clipboard
@@ -814,6 +815,7 @@ function copyToClipboard(text) {
     .catch((error) => {
         console.error('Error copying to clipboard:', error);
     });
+    showError("Copied to clipboard!")
 }
 
 
