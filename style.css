@@ -483,11 +483,13 @@ li{
     align-items: center;
     justify-content: flex-start;
     width: 80%;
-    margin-bottom: 20px;
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
 .correctSong p{
-    margin-block: 5px;
+    font-family: 'TaylorSwiftHandwriting';
+    margin-top: 18px;
 }
 
 .stats{
@@ -623,7 +625,7 @@ li{
     -webkit-transition: .4s;
     transition: .4s;
   }
-  
+
   .slider:before {
     position: absolute;
     content: "";
