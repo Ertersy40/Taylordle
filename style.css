@@ -662,14 +662,18 @@ li{
   }
 
 .xLink{
+    opacity: 85%;
     display: flex;
     align-items: center;
     position: fixed;
     bottom: 10px;
     right: 20px;
     font-size: large;
-    color: white;
+    color: rgba(255, 255, 255);
 
+}
+.xLink:hover{
+    opacity: 1;
 }
 .xLink p{
     margin: 0px;
