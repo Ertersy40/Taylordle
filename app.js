@@ -30,6 +30,11 @@ if (localStorage.getItem('hard') && localStorage.getItem('hard') === 'true'){
     hardLayer.style.opacity = 0;
 }
 
+let trackNumOrder = false;
+if (localStorage.getItem('NumericTrackNumbers') && localStorage.getItem('NumericTrackNumbers') === 'true'){
+    trackNumOrder = true;
+}
+
 
 function pickRandomSong() {
     // Assuming allTrackNames is an array of song names available globally
@@ -79,6 +84,7 @@ function showHelpModal() {
 
 function showSettingsModal() {
     document.getElementById('HardSwitch').checked = hardMode;
+    document.getElementById('TrackNumSwitch').checked = trackNumOrder
     disableScrolling();
     document.getElementById('settingsModal').style.display = "flex";
 }
@@ -159,10 +165,10 @@ const hardSwitch = document.getElementById('HardSwitch');
 hardSwitch.addEventListener('change', function() {
     changingModes = true
     guesses = [];
-    document.querySelector('.grid-table').innerHTML = '<div class="grid-header">Track Name</div><div class="grid-header">Album</div><div class="grid-header">Track Number</div><div class="grid-header">Track Length</div><div class="grid-header">Features</div>'
+    document.querySelector('.grid-table').innerHTML = '<div class="grid-header">Track Name</div><div class="grid-header">Album</div><div class="grid-header">Track Number</div><div class="grid-header">Track Length</div><div class="grid-header">Features</div>';
     localStorage.setItem('hard', this.checked)
     hardMode = this.checked
-
+    
     const today = new Date();
     const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'); // Format YYYY-MM-DD
     // console.log('Mode:', this.checked ? 'hard' : 'easy')
@@ -173,12 +179,12 @@ hardSwitch.addEventListener('change', function() {
     }else{
         enableGameInput();
     }
-
+    
     if (this.checked) {
         // Hard Mode is on!
         hardLayer.style.opacity = 1;
         easyLayer.style.opacity = 0;
-
+        
         //load the hard mode random song of today
         //reset guesses to whatever the localstorage says
         //load the guesses in
@@ -196,7 +202,7 @@ hardSwitch.addEventListener('change', function() {
         // Hard Mode is off!
         easyLayer.style.opacity = 1;
         hardLayer.style.opacity = 0;
-
+        
         //load the easy mode random song of today
         //reset guesses to whatever the localstorage says
         //load the guesses in
@@ -207,12 +213,23 @@ hardSwitch.addEventListener('change', function() {
             updateGuessCounterDisplay();
         });
         adjustBodyHeight();
-
+        
     }
     setTimeout(() => {
         changingModes = false;
     }, 1000)
 });
+
+const trackNumSwitch = document.getElementById('TrackNumSwitch');
+
+trackNumSwitch.addEventListener('change', function() {
+    trackNumOrder = !this.checked;
+    localStorage.setItem('NumericTrackNumbers', this.checked)
+    let tempGuesses = guesses;
+    guesses = [];
+    document.querySelector('.grid-table').innerHTML = '<div class="grid-header">Track Name</div><div class="grid-header">Album</div><div class="grid-header">Track Number</div><div class="grid-header">Track Length</div><div class="grid-header">Features</div>'
+    checkAndUpdateDate();
+})
 
 
 function handleSubmit() {
@@ -223,7 +240,7 @@ function handleSubmit() {
     
     const songInput = document.getElementById('songInput').value;
     const inputInfo = getTrackInfo(songInput)
-
+    
     if (guesses.includes(songInput)) {
         showError("you've already guessed this song!")
         document.getElementById('songInput').value = '';
@@ -686,10 +703,11 @@ function compareToTarget(trackInfo) {
     if (trackNumberDifference === 0) {
         comparisonResults.trackNumberMatch = "correct";
     } else if (trackNumberDifference === 1 || trackNumberDifference === 2) {
-        comparisonResults.trackNumberMatch = targetInfo.track_number < trackInfo.track_number ? "before close" : "after close";
+        comparisonResults.trackNumberMatch = (trackNumOrder && targetInfo.track_number < trackInfo.track_number) || (!trackNumOrder && targetInfo.track_number > trackInfo.track_number) ? "before close" : "after close";
     } else {
-        comparisonResults.trackNumberMatch = targetInfo.track_number < trackInfo.track_number ? "before" : "after";
+        comparisonResults.trackNumberMatch = (trackNumOrder && targetInfo.track_number < trackInfo.track_number) || (!trackNumOrder && targetInfo.track_number > trackInfo.track_number) ? "before" : "after";
     }
+    
 
     // Track length comparison
     const targetTrackLengthSeconds = trackLengthToSeconds(targetInfo.track_length);
@@ -698,9 +716,9 @@ function compareToTarget(trackInfo) {
     if (trackLengthDifference === 0) {
         comparisonResults.trackLengthMatch = "correct";
     } else if (trackLengthDifference <= 20) {
-        comparisonResults.trackLengthMatch = targetTrackLengthSeconds > comparedTrackLengthSeconds ? "before close" : "after close";
+        comparisonResults.trackLengthMatch = (targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before close" : "after close";
     } else {
-        comparisonResults.trackLengthMatch = targetTrackLengthSeconds > comparedTrackLengthSeconds ? "before" : "after";
+        comparisonResults.trackLengthMatch = (targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before" : "after";
     }
 
     // Checking shared features
