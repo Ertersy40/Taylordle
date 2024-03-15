@@ -3,7 +3,7 @@ if (!localStorage.getItem('helpShown')){
     showHelpModal()
 }
 
-showError("You can change the Track Name arrow direction as you please in settings :)", 8)
+showError("You can change the Track Number arrow direction as you please in settings :)", 8)
 
 const MAX_GUESSES = 8;
 let targetInfo = {};
