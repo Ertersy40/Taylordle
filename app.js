@@ -2,7 +2,7 @@ if (!localStorage.getItem('helpShown')){
     localStorage.setItem('helpShown', true);
     showHelpModal()
 }
-//tet
+showError("Hope you have an amazing day :)")
 
 const MAX_GUESSES = 8;
 let targetInfo = {};
