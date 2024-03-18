@@ -2,6 +2,7 @@ if (!localStorage.getItem('helpShown')){
     localStorage.setItem('helpShown', true);
     showHelpModal()
 }
+//tet
 
 const MAX_GUESSES = 8;
 let targetInfo = {};
