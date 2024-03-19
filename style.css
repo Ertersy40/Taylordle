@@ -749,3 +749,67 @@ li{
         padding-top: 20px;
     }
 }
+
+
+.cookie-consent-banner, .cookie-settings-modal {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transition: transform 0.5s ease;
+}
+
+.cookie-consent-banner {
+    transform: translateY(100%);
+    animation: slideInCookies 0.5s forwards;
+}
+
+@keyframes slideInCookies {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.cookie-settings-modal {
+    display: none;
+    margin-right: 20px
+}
+
+.cookie-consent-banner{
+    display: none;
+    margin-right: 20px
+}
+
+/* Additional styling for buttons, etc. */
+.cookieButtons button {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+    padding-inline: 10px;
+}
+
+#acceptAllCookies, #acceptAllCookieSettings{
+    background-color: #2f92c4;
+    color: white;
+}
+
+#cookieSettings, #saveCookieSettings{
+    color: rgb(117, 116, 116);
+}
+
+.cookieButtons{
+    display: flex;
+}
+
+.cookieDescription{
+    display: flex;
+    align-items: center;
+}
+
+.cookieDescription p{
+    margin-left: 10px;
+}

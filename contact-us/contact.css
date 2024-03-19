@@ -20,6 +20,15 @@
     font-family: 'Birds of Paradise';
 }
 
+.backButton{
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}
+
 h1{
     color: white;
     font-weight: normal;
