@@ -231,10 +231,10 @@ trackNumSwitch.addEventListener('change', function() {
 
 
 function handleSubmit() {
-    gtag('event', 'submit_word', {
-        'event_category': 'Game Interaction',
-        'event_label': 'Word Submission'
-    });
+    // gtag('event', 'submit_word', {
+    //     'event_category': 'Game Interaction',
+    //     'event_label': 'Word Submission'
+    // });
     
     const songInput = document.getElementById('songInput').value;
     const inputInfo = getTrackInfo(songInput)
@@ -257,11 +257,11 @@ function handleSubmit() {
     }
 
     if (guesses.length >= MAX_GUESSES && JSON.stringify(inputInfo) !== JSON.stringify(targetInfo)) {
-        gtag('event', 'game_lose', {
-            'event_category': 'Game Outcome',
-            'event_label': 'Lose',
-            'game_mode': hardMode ? 'hard' : 'easy'
-        });
+        // gtag('event', 'game_lose', {
+        //     'event_category': 'Game Outcome',
+        //     'event_label': 'Lose',
+        //     'game_mode': hardMode ? 'hard' : 'easy'
+        // });
         gameLost();
     }
     
@@ -332,10 +332,10 @@ function enableGameInput() {
 
 function gameWon() {
     // console.log("GAME WOOOON! WOOO!")
-    gtag('event', 'game_won', {
-        'event_category': 'Game Outcome',
-        'event_label': 'Win'
-    });
+    // gtag('event', 'game_won', {
+    //     'event_category': 'Game Outcome',
+    //     'event_label': 'Win'
+    // });
     
     const today = new Date();
     const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'); // Format YYYY-MM-DD
@@ -367,10 +367,10 @@ function gameLost() {
 
     // console.log("Oh no! Game lost :(")
     
-    gtag('event', 'game_lose', {
-        'event_category': 'Game Outcome',
-        'event_label': 'Lose'
-    });
+    // gtag('event', 'game_lose', {
+    //     'event_category': 'Game Outcome',
+    //     'event_label': 'Lose'
+    // });
     
     disableGameInput();
     const today = new Date();
