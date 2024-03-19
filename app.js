@@ -231,10 +231,13 @@ trackNumSwitch.addEventListener('change', function() {
 
 
 function handleSubmit() {
-    // gtag('event', 'submit_word', {
-    //     'event_category': 'Game Interaction',
-    //     'event_label': 'Word Submission'
-    // });
+    consent = localStorage.getItem('cookieConsent')
+    if (consent && consent.analytics){
+        gtag('event', 'submit_word', {
+            'event_category': 'Game Interaction',
+            'event_label': 'Word Submission'
+        });
+    }
     
     const songInput = document.getElementById('songInput').value;
     const inputInfo = getTrackInfo(songInput)
@@ -257,11 +260,14 @@ function handleSubmit() {
     }
 
     if (guesses.length >= MAX_GUESSES && JSON.stringify(inputInfo) !== JSON.stringify(targetInfo)) {
-        // gtag('event', 'game_lose', {
-        //     'event_category': 'Game Outcome',
-        //     'event_label': 'Lose',
-        //     'game_mode': hardMode ? 'hard' : 'easy'
-        // });
+        consent = localStorage.getItem('cookieConsent')
+        if (consent && consent.analytics){
+            gtag('event', 'game_lose', {
+                'event_category': 'Game Outcome',
+                'event_label': 'Lose',
+                'game_mode': hardMode ? 'hard' : 'easy'
+            });
+        }
         gameLost();
     }
     
@@ -331,11 +337,14 @@ function enableGameInput() {
 
 
 function gameWon() {
+    consent = localStorage.getItem('cookieConsent')
+    if (consent && consent.analytics){
+        gtag('event', 'game_won', {
+            'event_category': 'Game Outcome',
+            'event_label': 'Win'
+        });
+    }
     // console.log("GAME WOOOON! WOOO!")
-    // gtag('event', 'game_won', {
-    //     'event_category': 'Game Outcome',
-    //     'event_label': 'Win'
-    // });
     
     const today = new Date();
     const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'); // Format YYYY-MM-DD
@@ -366,11 +375,13 @@ function gameWon() {
 function gameLost() {
 
     // console.log("Oh no! Game lost :(")
-    
-    // gtag('event', 'game_lose', {
-    //     'event_category': 'Game Outcome',
-    //     'event_label': 'Lose'
-    // });
+    consent = localStorage.getItem('cookieConsent')
+    if (consent && consent.analytics){
+        gtag('event', 'game_lose', {
+            'event_category': 'Game Outcome',
+            'event_label': 'Lose'
+        });
+    }
     
     disableGameInput();
     const today = new Date();
