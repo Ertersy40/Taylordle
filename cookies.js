@@ -36,6 +36,12 @@ document.getElementById('cookieSettings').addEventListener('click', function() {
         document.getElementById('cookieConsentBanner').style.display = 'none';
         const analyticsChecked = document.getElementById('AnalyticsSwitch').checked;
         const advertisingChecked = document.getElementById('AdvertisingSwitch').checked
+        if (analyticsChecked){
+            initGoogleAnalytics(); 
+        }
+        if (advertisingChecked){
+            initGoogleAdsense();
+        }
         if (analyticsChecked && advertisingChecked){
             gtag('event', 'cookies_accepted', {
                 'event_category': 'cookie Interaction',
@@ -47,12 +53,6 @@ document.getElementById('cookieSettings').addEventListener('click', function() {
                 'event_category': 'cookie Interaction',
                 'event_label': 'cookies altered'
             });
-        }
-        if (analyticsChecked){
-            initGoogleAnalytics(); 
-        }
-        if (advertisingChecked){
-            initGoogleAdsense();
         }
 
         localStorage.setItem('cookieConsent', JSON.stringify({analytics: analyticsChecked, advertising: advertisingChecked}));
