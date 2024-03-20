@@ -17,6 +17,7 @@ const hardLayer = document.querySelector('.background .hard');
 
 let hardMode = false;
 if (localStorage.getItem('hard') && localStorage.getItem('hard') === 'true'){
+    showError("The deluxe songs are now a part of the original albums after yesterday's problems!");
     // console.log("HARD MODE")
     hardMode = true
     hardLayer.style.opacity = 1;
@@ -185,6 +186,7 @@ hardSwitch.addEventListener('change', function() {
     
     if (this.checked) {
         // Hard Mode is on!
+        showError("The deluxe songs are now a part of the original albums after yesterday's problems!");
         hardLayer.style.opacity = 1;
         easyLayer.style.opacity = 0;
         
