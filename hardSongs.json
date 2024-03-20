@@ -179,13 +179,7 @@
                 "track_name": "Bye Bye Baby (From The Vault)",
                 "track_length": "4:02",
                 "features": []
-            }
-        ]
-    },
-    {
-        "album_name": "Fearless Platinum Edition",
-        "img_url": "https://i.scdn.co/image/ab67616d0000b27334e5885465afc8a497ac1b7e",
-        "tracks": [
+            },
             {
                 "track_name": "Jump Then Fall",
                 "track_length": "3:57",
@@ -325,13 +319,7 @@
                 "track_name": "Timeless (From The Vault)",
                 "track_length": "5:21",
                 "features": []
-            }
-        ]
-    },
-    {
-        "album_name": "Speak Now (Deluxe Edition)",
-        "img_url": "https://i.scdn.co/image/ab67616d0000b2732e4ec3175d848eca7b76b07f",
-        "tracks": [
+            },
             {
                 "track_name": "If This Was A Movie",
                 "track_length": "3:54",
@@ -482,13 +470,7 @@
                 "track_name": "All Too Well (10 Minute Version) (From The Vault)",
                 "track_length": "10:13",
                 "features": []
-            }
-        ]
-    },
-    {
-        "album_name": "Red (Deluxe Edition)",
-        "img_url": "https://i.scdn.co/image/ab67616d0000b273a7613d346501b828b56a0bc3",
-        "tracks": [
+            },
             {
                 "track_name": "The Moment I Knew",
                 "track_length": "4:45",
@@ -506,6 +488,7 @@
             }
         ]
     },
+
     {
         "album_name": "1989",
         "img_url": "https://i.scdn.co/image/ab67616d0000b2739abdf14e6058bd3903686148",
@@ -576,6 +559,21 @@
                 "features": []
             },
             {
+                "track_name": "Wonderland",
+                "track_length": "4:05",
+                "features": []
+            },
+            {
+                "track_name": "You Are In Love",
+                "track_length": "4:27",
+                "features": []
+            },
+            {
+                "track_name": "New Romantics",
+                "track_length": "3:50",
+                "features": []
+            },
+            {
                 "track_name": "\"Slut!\" (From The Vault)",
                 "track_length": "3:00",
                 "features": []
@@ -598,27 +596,6 @@
             {
                 "track_name": "Is It Over Now? (From The Vault)",
                 "track_length": "3:49",
-                "features": []
-            }
-        ]
-    },
-    {
-        "album_name": "1989 (Deluxe Edition)",
-        "img_url": "https://i.scdn.co/image/ab67616d0000b273332d85510aba3eb28312cfb2",
-        "tracks": [
-            {
-                "track_name": "Wonderland",
-                "track_length": "4:05",
-                "features": []
-            },
-            {
-                "track_name": "You Are In Love",
-                "track_length": "4:27",
-                "features": []
-            },
-            {
-                "track_name": "New Romantics",
-                "track_length": "3:50",
                 "features": []
             }
         ]
@@ -893,13 +870,7 @@
                 "track_name": "hoax",
                 "track_length": "3:40",
                 "features": []
-            }
-        ]
-    },
-    {
-        "album_name": "folklore (deluxe version)",
-        "img_url": "https://i.scdn.co/image/ab67616d0000b273c288028c2592f400dd0b9233",
-        "tracks": [
+            },
             {
                 "track_name": "the lakes",
                 "track_length": "3:31",
@@ -991,13 +962,7 @@
                 "features": [
                     "Bon Iver"
                 ]
-            }
-        ]
-    },
-    {
-        "album_name": "evermore (deluxe version)",
-        "img_url": "https://i.scdn.co/image/ab67616d0000b27390fd9741e1838115cd90b3b6",
-        "tracks": [
+            },
             {
                 "track_name": "right where you left me",
                 "track_length": "4:05",
@@ -1081,13 +1046,7 @@
                 "track_name": "Mastermind",
                 "track_length": "3:11",
                 "features": []
-            }
-        ]
-    },
-    {
-        "album_name": "Midnights (3am Edition)",
-        "img_url": "https://i.scdn.co/image/ab67616d0000b273e0b60c608586d88252b8fbc0",
-        "tracks": [
+            },
             {
                 "track_name": "The Great War",
                 "track_length": "4:00",

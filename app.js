@@ -99,6 +99,11 @@ function showWinModal() {
     document.getElementById('winModal').style.display = "flex";
     revealTarget("Win");
     showStats("Win")
+    const hardModeNotifier = document.getElementById('hardModeNotifier')
+    hardModeNotifier.textContent = ""
+    if (!hardMode && !hardGameWonCheck){
+        hardModeNotifier.textContent = "Try out hard mode in settings!"
+    }
 }
 
 function showLoseModal() {
@@ -725,8 +730,6 @@ function compareToTarget(trackInfo) {
     if (trackLengthDifference === 0) {
         comparisonResults.trackLengthMatch = "correct";
     } else if (trackLengthDifference <= 30) {
-        console.log('within 30 seconds!')
-        console.log((targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before close" : "after close")
 
         comparisonResults.trackLengthMatch = (targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before close" : "after close";
     } else {
