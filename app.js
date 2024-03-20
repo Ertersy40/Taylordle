@@ -724,7 +724,10 @@ function compareToTarget(trackInfo) {
     const trackLengthDifference = Math.abs(targetTrackLengthSeconds - comparedTrackLengthSeconds);
     if (trackLengthDifference === 0) {
         comparisonResults.trackLengthMatch = "correct";
-    } else if (trackLengthDifference <= 20) {
+    } else if (trackLengthDifference <= 30) {
+        console.log('within 30 seconds!')
+        console.log((targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before close" : "after close")
+
         comparisonResults.trackLengthMatch = (targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before close" : "after close";
     } else {
         comparisonResults.trackLengthMatch = (targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before" : "after";
