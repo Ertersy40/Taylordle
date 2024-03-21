@@ -17,7 +17,6 @@ const hardLayer = document.querySelector('.background .hard');
 
 let hardMode = false;
 if (localStorage.getItem('hard') && localStorage.getItem('hard') === 'true'){
-    showError("The deluxe songs are now a part of the original albums after yesterday's problems!");
     // console.log("HARD MODE")
     hardMode = true
     hardLayer.style.opacity = 1;
@@ -29,9 +28,9 @@ if (localStorage.getItem('hard') && localStorage.getItem('hard') === 'true'){
     hardLayer.style.opacity = 0;
 }
 
-let trackNumOrder = false;
+let trackNumOrder = true;
 if (localStorage.getItem('NumericTrackNumbers') && localStorage.getItem('NumericTrackNumbers') === 'true'){
-    trackNumOrder = true;
+    trackNumOrder = false;
 }
 
 
@@ -83,7 +82,7 @@ function showHelpModal() {
 
 function showSettingsModal() {
     document.getElementById('HardSwitch').checked = hardMode;
-    document.getElementById('TrackNumSwitch').checked = trackNumOrder
+    document.getElementById('TrackNumSwitch').checked = !trackNumOrder
     disableScrolling();
     document.getElementById('settingsModal').style.display = "flex";
 }
