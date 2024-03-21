@@ -738,7 +738,7 @@ li{
     
 }
 
-@media (max-width: 439px) {
+@media (max-width: 470px) {
     .optionDescription{
         bottom: -25px;
     }
