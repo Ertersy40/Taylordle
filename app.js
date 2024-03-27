@@ -185,7 +185,6 @@ hardSwitch.addEventListener('change', function() {
     
     if (this.checked) {
         // Hard Mode is on!
-        showError("The deluxe songs are now a part of the original albums after yesterday's problems!");
         hardLayer.style.opacity = 1;
         easyLayer.style.opacity = 0;
         
