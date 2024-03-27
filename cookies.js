@@ -89,10 +89,11 @@ function initGoogleAnalytics() {
 
 // Initialize Google Adsense
 function initGoogleAdsense() {
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-9512385908704001",
-        enable_page_level_ads: true
-    });
+    // (adsbygoogle = window.adsbygoogle || []).push({
+    //     google_ad_client: "ca-pub-9512385908704001",
+    //     enable_page_level_ads: true
+    // });
+    
 }
 
 // Call checkCookieConsent on page load
