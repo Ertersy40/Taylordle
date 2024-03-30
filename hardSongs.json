@@ -292,6 +292,16 @@
                 "features": []
             },
             {
+                "track_name": "If This Was A Movie",
+                "track_length": "3:54",
+                "features": []
+            },
+            {
+                "track_name": "Superman",
+                "track_length": "4:35",
+                "features": []
+            },
+            {
                 "track_name": "Electric Touch (From The Vault)",
                 "track_length": "4:26",
                 "features": [
@@ -323,16 +333,6 @@
             {
                 "track_name": "Timeless (From The Vault)",
                 "track_length": "5:21",
-                "features": []
-            },
-            {
-                "track_name": "If This Was A Movie",
-                "track_length": "3:54",
-                "features": []
-            },
-            {
-                "track_name": "Superman",
-                "track_length": "4:35",
                 "features": []
             }
         ]
@@ -426,6 +426,31 @@
                 "features": []
             },
             {
+                "track_name": "The Moment I Knew",
+                "track_length": "4:45",
+                "features": []
+            },
+            {
+                "track_name": "Come Back...Be Here",
+                "track_length": "3:42",
+                "features": []
+            },
+            {
+                "track_name": "Girl At Home",
+                "track_length": "3:40",
+                "features": []
+            },
+            {
+                "track_name": "State Of Grace - Acoustic Version",
+                "track_length": "5:21",
+                "features": []
+            },
+            {
+                "track_name": "Ronan",
+                "track_length": "4:24",
+                "features": []
+            },
+            {
                 "track_name": "Better Man (From The Vault)",
                 "track_length": "4:57",
                 "features": []
@@ -475,25 +500,9 @@
                 "track_name": "All Too Well (10 Minute Version) (From The Vault)",
                 "track_length": "10:13",
                 "features": []
-            },
-            {
-                "track_name": "The Moment I Knew",
-                "track_length": "4:45",
-                "features": []
-            },
-            {
-                "track_name": "Come Back...Be Here",
-                "track_length": "3:42",
-                "features": []
-            },
-            {
-                "track_name": "Girl At Home",
-                "track_length": "3:40",
-                "features": []
             }
         ]
     },
-
     {
         "album_name": "1989",
         "img_url": "https://i.scdn.co/image/ab67616d0000b2739abdf14e6058bd3903686148",
@@ -579,7 +588,7 @@
                 "features": []
             },
             {
-                "track_name": "\"Slut!\" (From The Vault)",
+                "track_name": "Slut! (From The Vault)",
                 "track_length": "3:00",
                 "features": []
             },
