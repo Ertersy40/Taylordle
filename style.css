@@ -184,6 +184,9 @@ h1 {
     font-size: 60px;
     margin-bottom: 35px;
 }
+.xyz{
+    font-size: 40px;
+}
 
 #albumContainer{
     display: flex;
