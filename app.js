@@ -28,9 +28,9 @@ if (localStorage.getItem('hard') && localStorage.getItem('hard') === 'true'){
     hardLayer.style.opacity = 0;
 }
 
-let trackNumOrder = true;
-if (localStorage.getItem('NumericTrackNumbers') && localStorage.getItem('NumericTrackNumbers') === 'true'){
-    trackNumOrder = false;
+let trackNumOrder = false;
+if (localStorage.getItem('NumericTrackNumbers') && localStorage.getItem('NumericTrackNumbers') === 'false'){
+    trackNumOrder = true;
 }
 
 
