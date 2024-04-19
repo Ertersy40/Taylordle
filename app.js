@@ -3,6 +3,8 @@ if (!localStorage.getItem('helpShown')){
     showHelpModal()
 }
 
+showError("The Tortured Poets Department's here!")
+
 const MAX_GUESSES = 8;
 let targetInfo = {};
 let guesses = [];
