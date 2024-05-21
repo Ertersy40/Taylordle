@@ -3,8 +3,6 @@ if (!localStorage.getItem('helpShown')){
     showHelpModal()
 }
 
-showError("The Anthology songs are now in hard mode - Hope you've been studying!!", 4)
-
 const MAX_GUESSES = 8;
 let targetInfo = {};
 let guesses = [];
