@@ -35,8 +35,6 @@ if (localStorage.getItem('NumericTrackNumbers') && localStorage.getItem('Numeric
 
 
 function pickRandomSong() {
-    // Assuming allTrackNames is an array of song names available globally
-
     // Generate a seed from today's date
     const today = new Date();
     const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate() + (hardMode ? 1 : 2);
