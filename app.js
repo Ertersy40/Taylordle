@@ -249,7 +249,7 @@ function handleSubmit() {
         });
     }
     
-    const songInput = document.getElementById('songInput').value;
+    const songInput = document.getElementById('songInput').value.trim();
     const inputInfo = getTrackInfo(songInput)
     
     if (guesses.includes(songInput)) {
