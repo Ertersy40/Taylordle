@@ -47,6 +47,7 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
         <div class="contentContainer">
+            <div class="adSpot"></div>
             <h1>Taylordle<span class="xyz">.xyz</span></h1>
             <div id="albumContainer"></div>
             <div class="search">
@@ -132,13 +133,49 @@
                             <p id="gamesWin">0</p>
                         </div>
                     </div>
-                    
+                    <div class="countdown">
+                        <p>Next Game in:</p>
+                        <p id="countdownWin">00:00:00</p>
+                        <script>
+                            function updateCountdownWin() {
+                                var now = new Date();
+                                var midnight = new Date();
+                                midnight.setHours(24, 0, 0, 0);
+                                var timeLeft = midnight - now;
+            
+                                if (timeLeft > 0) {
+                                    var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                                    var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+                                    document.getElementById("countdownWin").innerHTML =
+                                        ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+                                } else {
+                                    clearInterval(intervalWin);
+                                    document.getElementById("countdownWin").innerHTML = "00:00:00";
+                                    var playAgainButton = document.createElement("button");
+                                    playAgainButton.innerHTML = "Play Again";
+                                    playAgainButton.onclick = function() {
+                                        location.reload();
+                                    };
+                                    if (document.getElementById("winModalContent")) {
+                                        document.getElementById("winModalContent").appendChild(playAgainButton);
+                                    }
+                                }
+                            }
+            
+                            updateCountdownWin();
+                            var intervalWin = setInterval(updateCountdownWin, 1000);
+                        </script>
+                    </div>
+            
                     <button class="ShareButton" onclick="shareContent()">Share Your Score</button>
                     <div id="hardModeNotifier"></div>
-                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me!', '#d94a6e', 'Y8Y1V7SR9');kofiwidget2.draw();</script>
-                    
+                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+                    <script type='text/javascript'>kofiwidget2.init('Support Me!', '#d94a6e', 'Y8Y1V7SR9');kofiwidget2.draw();</script>
                 </div>
             </div>
+            
             
             <!-- Lose Modal -->
             <div id="loseModal" class="modal" style="display:none;">
@@ -161,10 +198,47 @@
                             <p id="gamesLose">0</p>
                         </div>
                     </div>
+                    <div class="countdown">
+                        <p>Next Game in:</p>
+                        <p id="countdownLose">00:00:00</p>
+                        <script>
+                            function updateCountdownLose() {
+                                var now = new Date();
+                                var midnight = new Date();
+                                midnight.setHours(24, 0, 0, 0);
+                                var timeLeft = midnight - now;
+            
+                                if (timeLeft > 0) {
+                                    var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                                    var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+                                    document.getElementById("countdownLose").innerHTML =
+                                        ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+                                } else {
+                                    clearInterval(intervalLose);
+                                    document.getElementById("countdownLose").innerHTML = "00:00:00";
+                                    var playAgainButton = document.createElement("button");
+                                    playAgainButton.innerHTML = "Play Again";
+                                    playAgainButton.onclick = function() {
+                                        location.reload();
+                                    };
+                                    if (document.getElementById("loseModalContent")) {
+                                        document.getElementById("loseModalContent").appendChild(playAgainButton);
+                                    }
+                                }
+                            }
+            
+                            updateCountdownLose();
+                            var intervalLose = setInterval(updateCountdownLose, 1000);
+                        </script>
+                    </div>
                     <button class="ShareButton" onclick="shareContent()">Share Your Score</button>
-                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me!', '#d94a6e', 'Y8Y1V7SR9');kofiwidget2.draw();</script>
+                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+                    <script type='text/javascript'>kofiwidget2.init('Support Me!', '#d94a6e', 'Y8Y1V7SR9');kofiwidget2.draw();</script>
                 </div>
             </div>
+            
             <div id="cookieConsentBanner" class="cookie-consent-banner">
                 <p>🍪 Taylordle uses cookies to enhance site navigation, analyze site usage, and assist in our marketing efforts. By clicking 'Accept All,' you consent to the use of All cookies. Alternatively, you can click 'Cookie Settings' to manage your preferences.</p>
                 <div class="cookieButtons">

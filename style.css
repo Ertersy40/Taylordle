@@ -467,6 +467,14 @@ li{
     text-align: center;
 }
 
+.countdown p{
+    width: 100%;
+}
+
+#countdownWin, #countdownLose{
+    margin-block: 5px
+}
+
 .closeModal {
     color: var(--text-color);
     float: right;
