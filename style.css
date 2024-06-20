@@ -825,8 +825,7 @@ li{
     margin-left: 10px;
 }
 
-.fake-css-to-make-gh-pages-reload{
-    background-color: white;
-    color: red;
-    grid-row: 8;
+.ad {
+    width: 100%;
+    height: 50px;
 }
