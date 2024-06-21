@@ -3,6 +3,8 @@ if (!localStorage.getItem('helpShown')){
     showHelpModal()
 }
 
+showError("Go follow the new dedicated Taylordle twitter account and post today's score!", 6)
+
 const MAX_GUESSES = 8;
 let targetInfo = {};
 let guesses = [];
