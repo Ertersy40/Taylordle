@@ -3,7 +3,7 @@ if (!localStorage.getItem('helpShown')){
     showHelpModal()
 }
 
-showError("Go follow the new dedicated Taylordle twitter account and post today's score!", 6)
+showError("Go follow @taylordle_xyz on Twitter!")
 
 const MAX_GUESSES = 8;
 let targetInfo = {};
