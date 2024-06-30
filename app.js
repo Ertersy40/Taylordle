@@ -3,7 +3,7 @@ if (!localStorage.getItem('helpShown')){
     showHelpModal()
 }
 
-showError("Go follow @taylordle_xyz on Twitter!")
+// showError("Go follow @taylordle_xyz on Twitter!")
 
 const MAX_GUESSES = 8;
 let targetInfo = {};
@@ -40,13 +40,6 @@ function pickRandomSong() {
     // Generate a seed from today's date
     const today = new Date();
     const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate() + (hardMode ? 1 : 2);
-
-    //if today's date is the 25th of may, pick a specific song
-    if (today.getMonth() === 4 && today.getDate() === 25 && !hardMode){
-        randomSong = "The Way I Loved You";
-        targetInfo = getTrackInfo(randomSong)
-        return
-    }
 
     // Simple seeded random function
     const pseudoRandom = seed => {
