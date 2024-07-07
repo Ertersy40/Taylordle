@@ -84,20 +84,13 @@ body {
     color: hsl(0, 55%, 85%);
 }
 
-/* Class when body content fits within the viewport */
-.viewport-height {
-    height: 100vh;
-}
 
-/* Class when body content exceeds the viewport */
-.content-height {
-    height: 100%; /* Height based on content */
-    padding-bottom: 100px;
-}
-
-.viewport-height, .content-height {
+body {
+    padding-block: 100px;
     background-color: var(--background-color); /* Fallback color */
     background-repeat: no-repeat;
+    min-height: 100vh;
+    height: 100%;
 }
 
 
@@ -388,6 +381,10 @@ button:hover {
     min-width: 0; /* Allows the content to shrink without overflow */
     overflow: hidden; /* Hides any overflow */
     word-break: break-word; /* Ensures text wraps */
+}
+
+.grid-cell.empty {
+    height: 70.54px;
 }
 
 /* Target the first element in each row */

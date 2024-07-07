@@ -198,7 +198,6 @@ hardSwitch.addEventListener('change', function() {
             checkAndUpdateDate();
             updateGuessCounterDisplay();
         });
-        adjustBodyHeight();
         
         
     } else {
@@ -215,7 +214,6 @@ hardSwitch.addEventListener('change', function() {
             checkAndUpdateDate();
             updateGuessCounterDisplay();
         });
-        adjustBodyHeight();
         
     }
     setTimeout(() => {
@@ -409,27 +407,25 @@ function gameLost() {
 
 
 function addGuess(guess) {
-    
     const trackInfo = getTrackInfo(guess); // Assuming guess is the track name
     const correctness = compareToTarget(trackInfo);
 
     // Create a row for the new guess
     
     // Add guess name cell
-    let cell = document.createElement('div');
-    cell.textContent = guess;
-    cell.className = 'grid-cell ' + (guess === targetInfo.track_name ? "correct" : "");
-    document.querySelector('.grid-table').appendChild(cell);
-
+    let songNameCell = document.createElement('div');
+    songNameCell.textContent = guess;
+    songNameCell.className = 'grid-cell ' + (guess === targetInfo.track_name ? "correct" : "");
+    
     // Add album comparison cell with image and arrow
     // Adding an image cell with arrow for album comparison
-    cell = document.createElement('div');
-    cell.className = 'grid-cell ' + correctness.albumMatch.replace(" ", "-") + ' album_cell';
-
+    let albumCoverCell = document.createElement('div');
+    albumCoverCell.className = 'grid-cell ' + correctness.albumMatch.replace(" ", "-") + ' album_cell';
+    
     const albumContainer = document.createElement('div'); // Create a new div for the album image and arrow
     albumContainer.style.display = 'flex'; // Use flexbox to align items inline
     albumContainer.style.alignItems = 'center'; // Center items vertically
-
+    
     const img = document.createElement('img');
     img.src = trackInfo.img_url; // Ensure you have an img_url property
     img.style.width = '50px'; // Adjust size as needed
@@ -438,10 +434,10 @@ function addGuess(guess) {
     if (trackInfo.album_name.toLowerCase().includes('edition') || trackInfo.album_name.toLowerCase().includes('deluxe')){
         img.classList.add('deluxe')
     }
-
+    
     let arrowSpan = document.createElement('span'); // Create a new span for the symbol
     arrowSpan.className = "arrow"; // Assign a base class for styling
-
+    
     if (correctness.albumMatch.includes("before")) {
         arrowSpan.textContent = "↑"; // Up arrow for before
         arrowSpan.classList.add("up-arrow"); // Add class for up arrow
@@ -449,23 +445,20 @@ function addGuess(guess) {
         arrowSpan.textContent = "↓"; // Down arrow for after
         arrowSpan.classList.add("down-arrow"); // Add class for down arrow
     }
-
+    
     // Append the image and arrow span to the album container
     albumContainer.appendChild(img);
     albumContainer.appendChild(arrowSpan);
-
+    
     // Append the album container to the cell
-    cell.appendChild(albumContainer);
-    document.querySelector('.grid-table').appendChild(cell);
-
-
-    // Function to create and append cells based on correctness
+    albumCoverCell.appendChild(albumContainer);
+    
     // Function to create and append cells based on correctness, now includes symbols for direction
     const appendCorrectnessCell = (criteria, value) => {
-        let cell = document.createElement('div');
+        let correctnessCell = document.createElement('div');
         let symbolSpan = document.createElement('span'); // Create a new span for the arrow symbol
         symbolSpan.className = "arrow-container"; // Reuse the arrow-container class for styling
-
+        
         let symbol = ""; // Default, no symbol
         if (criteria.includes("before")) {
             symbol = "↑"; // Up arrow for before
@@ -477,25 +470,39 @@ function addGuess(guess) {
         symbolSpan.textContent = symbol; // Set the text content of the span to the arrow symbol
         
         // Now set the cell's content to the value and append the symbolSpan next to it
-        cell.textContent = value + " "; // Add a space for separation
-        cell.appendChild(symbolSpan); // Append the arrow span next to the value
-        cell.className = criteria.replace(" ", "-"); // Use className for styling based on the criteria
-        cell.className += ' grid-cell'
-        document.querySelector('.grid-table').appendChild(cell);
-        adjustBodyHeight()
+        correctnessCell.textContent = value + " "; // Add a space for separation
+        correctnessCell.appendChild(symbolSpan); // Append the arrow span next to the value
+        correctnessCell.className = criteria.replace(" ", "-"); // Use className for styling based on the criteria
+        correctnessCell.className += ' grid-cell'
+        return correctnessCell;
     };
-
-
+    
+    
     // Append cells for track number, track length, and features
-    appendCorrectnessCell(correctness.trackNumberMatch, trackInfo.track_number.toString());
-    appendCorrectnessCell(correctness.trackLengthMatch, trackInfo.track_length);
-
-    cell = document.createElement('div');
-    cell.textContent = trackInfo.features.join(', ') || 'No features';
-    cell.className = 'grid-cell ' + correctness.sharedFeatures;
+    let trackNumCell = appendCorrectnessCell(correctness.trackNumberMatch, trackInfo.track_number.toString());
+    let trackLengthCell = appendCorrectnessCell(correctness.trackLengthMatch, trackInfo.track_length);
+    
+    let featuresCell = document.createElement('div');
+    featuresCell.textContent = trackInfo.features.join(', ') || 'No features';
+    featuresCell.className = 'grid-cell ' + correctness.sharedFeatures;
+    
+    
+    //remove a row of empty cells
+    const empty = document.querySelectorAll('.empty')
+    for (let i = 0; i < 5; i++) {
+        empty[i].remove()
+    }
 
     // Append the new row to the guess table
-    document.querySelector('.grid-table').appendChild(cell);
+    let gridTable = document.querySelector('.grid-table')
+    let firstEmptyCell = document.querySelectorAll('.empty')[0]
+    firstEmptyCell.style.backgroundcolor = 'blue'
+
+    gridTable.insertBefore(songNameCell, firstEmptyCell);
+    gridTable.insertBefore(albumCoverCell, firstEmptyCell);
+    gridTable.insertBefore(trackNumCell, firstEmptyCell);
+    gridTable.insertBefore(trackLengthCell, firstEmptyCell);
+    gridTable.insertBefore(featuresCell, firstEmptyCell);
 
     // Check for win or lose conditions
     if (JSON.stringify(trackInfo) === JSON.stringify(targetInfo)) {
@@ -504,19 +511,7 @@ function addGuess(guess) {
         gameLost();
         disableGameInput();
     }
-}
 
-function adjustBodyHeight() {
-    const bodyContentHeight = document.body.scrollHeight;
-    const viewportHeight = window.innerHeight;
-
-    if (bodyContentHeight > viewportHeight) {
-        document.body.classList.remove("viewport-height");
-        document.body.classList.add("content-height");
-    } else {
-        document.body.classList.remove("content-height");
-        document.body.classList.add("viewport-height");
-    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -526,10 +521,6 @@ document.addEventListener('DOMContentLoaded', function() {
         checkAndUpdateDate();
         updateGuessCounterDisplay();
     });
-    adjustBodyHeight();
-
-    // Adjust the height whenever the window is resized
-    window.addEventListener("resize", adjustBodyHeight);
 
     // Add event listener to the submit button
     const submitBtn = document.getElementById('submitBtn');
@@ -556,7 +547,6 @@ function loadGuesses() {
     guesses = JSON.parse((localStorage.getItem((hardMode ? 'hard' : '') + 'guesses') || '[]'));
     guesses.forEach(guess => addGuess(guess));
 }
-
 
 // Global variable to store albums data
 let albumsData = [];
