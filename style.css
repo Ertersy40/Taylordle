@@ -145,7 +145,7 @@ body {
 .topButtons button{
     margin-right: 10px;
     height: 57px;
-    width: 49px;
+    width: 57px;
     border-radius: 24px;
     background-color: var(--button-color);
     border: 3px solid white;

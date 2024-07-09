@@ -496,7 +496,6 @@ function addGuess(guess) {
     // Append the new row to the guess table
     let gridTable = document.querySelector('.grid-table')
     let firstEmptyCell = document.querySelectorAll('.empty')[0]
-    firstEmptyCell.style.backgroundcolor = 'blue'
 
     gridTable.insertBefore(songNameCell, firstEmptyCell);
     gridTable.insertBefore(albumCoverCell, firstEmptyCell);
