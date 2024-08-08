@@ -88,5 +88,3 @@ Custom fonts used in the website are stored in the `fonts` directory. This inclu
 The `contact-us` directory contains files related to the contact page, and the `privacy-policy` directory contains the privacy policy page. They are in directories so the url shows /contact-us instead of /contact-us/index.html.
 
 ---
-
-Feel free to update this README file with any additional information or instructions specific to your project.
