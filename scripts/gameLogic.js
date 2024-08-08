@@ -3,21 +3,23 @@
  * @param {Array} trackNames - The array of track names to display as suggestions.
  */
 function displaySuggestions(trackNames) {
-    const suggestionsBox = document.getElementById('suggestions');
-    suggestionsBox.innerHTML = '';
+    const suggestionsBox = document.getElementById("suggestions");
+    suggestionsBox.innerHTML = "";
     if (trackNames.length > 0) {
-        document.getElementById('suggestions').style.display = 'block';
-        const suggestionsHTML = trackNames.map(name => `<div class="suggestion-item">${name}</div>`).join('');
+        document.getElementById("suggestions").style.display = "block";
+        const suggestionsHTML = trackNames
+            .map((name) => `<div class="suggestion-item">${name}</div>`)
+            .join("");
         suggestionsBox.innerHTML = suggestionsHTML;
-        
-        document.querySelectorAll('.suggestion-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.getElementById('songInput').value = this.innerText;
+
+        document.querySelectorAll(".suggestion-item").forEach((item) => {
+            item.addEventListener("click", function () {
+                document.getElementById("songInput").value = this.innerText;
                 displaySuggestions([]);
             });
         });
     } else {
-        document.getElementById('suggestions').style.display = 'none';
+        document.getElementById("suggestions").style.display = "none";
     }
 }
 
@@ -25,40 +27,45 @@ function displaySuggestions(trackNames) {
  * Handles the submission of a guess and updates the game state.
  */
 function handleSubmit() {
-    consent = localStorage.getItem('cookieConsent')
-    if (consent && consent.analytics){
-        gtag('event', 'submit_word', {
-            'event_category': 'Game Interaction',
-            'event_label': 'Word Submission'
+    consent = localStorage.getItem("cookieConsent");
+    if (consent && consent.analytics) {
+        gtag("event", "submit_word", {
+            event_category: "Game Interaction",
+            event_label: "Word Submission",
         });
     }
-    
-    const songInput = document.getElementById('songInput').value.trim();
-    const inputInfo = getTrackInfo(songInput)
-    
+
+    const songInput = document.getElementById("songInput").value.trim();
+    const inputInfo = getTrackInfo(songInput);
+
     if (guesses.includes(songInput)) {
-        showBanner("you've already guessed this song!")
-        document.getElementById('songInput').value = '';
-        document.getElementById('suggestions').style.display = 'none';
+        showBanner("you've already guessed this song!");
+        document.getElementById("songInput").value = "";
+        document.getElementById("suggestions").style.display = "none";
     } else if (allTrackNames.includes(songInput)) {
-        document.getElementById('songInput').value = '';
-        document.getElementById('suggestions').style.display = 'none';
+        document.getElementById("songInput").value = "";
+        document.getElementById("suggestions").style.display = "none";
         addGuess(songInput);
         guesses.push(songInput);
         updateGuessCounterDisplay();
-        localStorage.setItem(hardMode ? 'hardguesses' : 'guesses', JSON.stringify(guesses));
-    } 
-    else {
-        showBanner('Invalid song name!');
+        localStorage.setItem(
+            hardMode ? "hardguesses" : "guesses",
+            JSON.stringify(guesses)
+        );
+    } else {
+        showBanner("Invalid song name!");
     }
 
-    if (guesses.length >= MAX_GUESSES && JSON.stringify(inputInfo) !== JSON.stringify(targetInfo)) {
-        consent = localStorage.getItem('cookieConsent')
-        if (consent && consent.analytics){
-            gtag('event', 'game_lose', {
-                'event_category': 'Game Outcome',
-                'event_label': 'Lose',
-                'game_mode': hardMode ? 'hard' : 'easy'
+    if (
+        guesses.length >= MAX_GUESSES &&
+        JSON.stringify(inputInfo) !== JSON.stringify(targetInfo)
+    ) {
+        consent = localStorage.getItem("cookieConsent");
+        if (consent && consent.analytics) {
+            gtag("event", "game_lose", {
+                event_category: "Game Outcome",
+                event_label: "Lose",
+                game_mode: hardMode ? "hard" : "easy",
             });
         }
         gameLost();
@@ -73,17 +80,19 @@ function handleSubmit() {
 function getTrackInfo(trackName) {
     let trackInfo = {
         track_name: trackName,
-        img_url: '',
-        album_name: '',
+        img_url: "",
+        album_name: "",
         track_number: -1,
-        track_length: '',
-        features: []
+        track_length: "",
+        features: [],
     };
 
     for (let album of albumsData) {
         let tracks = album.tracks;
         for (let i = 0; i < tracks.length; i++) {
-            if (tracks[i].track_name.toLowerCase() === trackName.toLowerCase()) {
+            if (
+                tracks[i].track_name.toLowerCase() === trackName.toLowerCase()
+            ) {
                 trackInfo.img_url = album.img_url;
                 trackInfo.album_name = album.album_name;
                 trackInfo.track_number = i + 1; // Track number in the album
@@ -106,52 +115,92 @@ function compareToTarget(trackInfo) {
         albumMatch: "correct", // Assume correct to start, will adjust based on logic
         trackNumberMatch: "correct", // Same assumption
         trackLengthMatch: "correct", // Same assumption
-        featuresMatch: "incorrect" // Start with "incorrect" and adjust based on logic below
+        featuresMatch: "incorrect", // Start with "incorrect" and adjust based on logic below
     };
 
     const trackLengthToSeconds = (trackLength) => {
-        const [minutes, seconds] = trackLength.split(':').map(Number);
+        const [minutes, seconds] = trackLength.split(":").map(Number);
         return minutes * 60 + seconds;
     };
 
-    const targetAlbumIndex = albumsData.findIndex(album => album.album_name === targetInfo.album_name);
-    const comparedAlbumIndex = albumsData.findIndex(album => album.album_name === trackInfo.album_name);
+    const targetAlbumIndex = albumsData.findIndex(
+        (album) => album.album_name === targetInfo.album_name
+    );
+    const comparedAlbumIndex = albumsData.findIndex(
+        (album) => album.album_name === trackInfo.album_name
+    );
     if (targetAlbumIndex === comparedAlbumIndex) {
         comparisonResults.albumMatch = "correct";
-    } else if (Math.abs(targetAlbumIndex - comparedAlbumIndex) === 1 || Math.abs(targetAlbumIndex - comparedAlbumIndex) === 2) {
-        comparisonResults.albumMatch = targetAlbumIndex > comparedAlbumIndex ? "before close" : "after close";
+    } else if (
+        Math.abs(targetAlbumIndex - comparedAlbumIndex) === 1 ||
+        Math.abs(targetAlbumIndex - comparedAlbumIndex) === 2
+    ) {
+        comparisonResults.albumMatch =
+            targetAlbumIndex > comparedAlbumIndex
+                ? "before close"
+                : "after close";
     } else {
-        comparisonResults.albumMatch = targetAlbumIndex > comparedAlbumIndex ? "before" : "after";
+        comparisonResults.albumMatch =
+            targetAlbumIndex > comparedAlbumIndex ? "before" : "after";
     }
 
-    const trackNumberDifference = Math.abs(targetInfo.track_number - trackInfo.track_number);
+    const trackNumberDifference = Math.abs(
+        targetInfo.track_number - trackInfo.track_number
+    );
     if (trackNumberDifference === 0) {
         comparisonResults.trackNumberMatch = "correct";
     } else if (trackNumberDifference === 1 || trackNumberDifference === 2) {
-        comparisonResults.trackNumberMatch = (trackNumOrder && targetInfo.track_number < trackInfo.track_number) || (!trackNumOrder && targetInfo.track_number > trackInfo.track_number) ? "before close" : "after close";
+        comparisonResults.trackNumberMatch =
+            (trackNumOrder &&
+                targetInfo.track_number < trackInfo.track_number) ||
+            (!trackNumOrder && targetInfo.track_number > trackInfo.track_number)
+                ? "before close"
+                : "after close";
     } else {
-        comparisonResults.trackNumberMatch = (trackNumOrder && targetInfo.track_number < trackInfo.track_number) || (!trackNumOrder && targetInfo.track_number > trackInfo.track_number) ? "before" : "after";
+        comparisonResults.trackNumberMatch =
+            (trackNumOrder &&
+                targetInfo.track_number < trackInfo.track_number) ||
+            (!trackNumOrder && targetInfo.track_number > trackInfo.track_number)
+                ? "before"
+                : "after";
     }
-    
-    const targetTrackLengthSeconds = trackLengthToSeconds(targetInfo.track_length);
-    const comparedTrackLengthSeconds = trackLengthToSeconds(trackInfo.track_length);
-    const trackLengthDifference = Math.abs(targetTrackLengthSeconds - comparedTrackLengthSeconds);
+
+    const targetTrackLengthSeconds = trackLengthToSeconds(
+        targetInfo.track_length
+    );
+    const comparedTrackLengthSeconds = trackLengthToSeconds(
+        trackInfo.track_length
+    );
+    const trackLengthDifference = Math.abs(
+        targetTrackLengthSeconds - comparedTrackLengthSeconds
+    );
     if (trackLengthDifference === 0) {
         comparisonResults.trackLengthMatch = "correct";
     } else if (trackLengthDifference <= 30) {
-        comparisonResults.trackLengthMatch = (targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before close" : "after close";
+        comparisonResults.trackLengthMatch =
+            targetTrackLengthSeconds > comparedTrackLengthSeconds
+                ? "before close"
+                : "after close";
     } else {
-        comparisonResults.trackLengthMatch = (targetTrackLengthSeconds > comparedTrackLengthSeconds) ? "before" : "after";
+        comparisonResults.trackLengthMatch =
+            targetTrackLengthSeconds > comparedTrackLengthSeconds
+                ? "before"
+                : "after";
     }
 
     const targetFeaturesSet = new Set(targetInfo.features);
     const trackFeaturesSet = new Set(trackInfo.features);
-    const intersection = new Set([...targetFeaturesSet].filter(x => trackFeaturesSet.has(x)));
-    
-    if (targetFeaturesSet.size === 0 && trackFeaturesSet.size === 0){
-        comparisonResults.sharedFeatures = "correct"
+    const intersection = new Set(
+        [...targetFeaturesSet].filter((x) => trackFeaturesSet.has(x))
+    );
+
+    if (targetFeaturesSet.size === 0 && trackFeaturesSet.size === 0) {
+        comparisonResults.sharedFeatures = "correct";
     } else if (intersection.size > 0) {
-        if (targetFeaturesSet.size === trackFeaturesSet.size && intersection.size === targetFeaturesSet.size) {
+        if (
+            targetFeaturesSet.size === trackFeaturesSet.size &&
+            intersection.size === targetFeaturesSet.size
+        ) {
             comparisonResults.sharedFeatures = "correct";
         } else {
             comparisonResults.sharedFeatures = "close";
@@ -167,7 +216,9 @@ function compareToTarget(trackInfo) {
  * Updates the display of the guess counter.
  */
 function updateGuessCounterDisplay() {
-    document.getElementById('guesses').innerHTML = `Guess: ${guesses.length}<span class="alternate-font">/</span>8`;
+    document.getElementById(
+        "guesses"
+    ).innerHTML = `Guess: ${guesses.length}<span class="alternate-font">/</span>8`;
 }
 
 /**
@@ -179,32 +230,37 @@ function addGuess(guess) {
     const correctness = compareToTarget(trackInfo);
 
     // Create a row for the new guess
-    
+
     // Add guess name cell
-    let songNameCell = document.createElement('div');
+    let songNameCell = document.createElement("div");
     songNameCell.textContent = guess;
-    songNameCell.className = 'grid-cell ' + (guess === targetInfo.track_name ? "correct" : "");
-    
+    songNameCell.className =
+        "grid-cell " + (guess === targetInfo.track_name ? "correct" : "");
+
     // Add album comparison cell with image and arrow
-    let albumCoverCell = document.createElement('div');
-    albumCoverCell.className = 'grid-cell ' + correctness.albumMatch.replace(" ", "-") + ' album_cell';
-    
-    const albumContainer = document.createElement('div'); // Create a new div for the album image and arrow
-    albumContainer.style.display = 'flex'; // Use flexbox to align items inline
-    albumContainer.style.alignItems = 'center'; // Center items vertically
-    
-    const img = document.createElement('img');
+    let albumCoverCell = document.createElement("div");
+    albumCoverCell.className =
+        "grid-cell " + correctness.albumMatch.replace(" ", "-") + " album_cell";
+
+    const albumContainer = document.createElement("div"); // Create a new div for the album image and arrow
+    albumContainer.style.display = "flex"; // Use flexbox to align items inline
+    albumContainer.style.alignItems = "center"; // Center items vertically
+
+    const img = document.createElement("img");
     img.src = trackInfo.img_url; // Ensure you have an img_url property
-    img.style.width = '50px'; // Adjust size as needed
-    img.style.height = 'auto';
-    img.style.marginRight = '10px'; // Add some space between the image and the arrow
-    if (trackInfo.album_name.toLowerCase().includes('edition') || trackInfo.album_name.toLowerCase().includes('deluxe')){
-        img.classList.add('deluxe')
+    img.style.width = "50px"; // Adjust size as needed
+    img.style.height = "auto";
+    img.style.marginRight = "10px"; // Add some space between the image and the arrow
+    if (
+        trackInfo.album_name.toLowerCase().includes("edition") ||
+        trackInfo.album_name.toLowerCase().includes("deluxe")
+    ) {
+        img.classList.add("deluxe");
     }
-    
-    let arrowSpan = document.createElement('span'); // Create a new span for the symbol
+
+    let arrowSpan = document.createElement("span"); // Create a new span for the symbol
     arrowSpan.className = "arrow"; // Assign a base class for styling
-    
+
     if (correctness.albumMatch.includes("before")) {
         arrowSpan.textContent = "↑"; // Up arrow for before
         arrowSpan.classList.add("up-arrow"); // Add class for up arrow
@@ -212,16 +268,16 @@ function addGuess(guess) {
         arrowSpan.textContent = "↓"; // Down arrow for after
         arrowSpan.classList.add("down-arrow"); // Add class for down arrow
     }
-    
+
     albumContainer.appendChild(img);
     albumContainer.appendChild(arrowSpan);
     albumCoverCell.appendChild(albumContainer);
-    
+
     const appendCorrectnessCell = (criteria, value) => {
-        let correctnessCell = document.createElement('div');
-        let symbolSpan = document.createElement('span'); // Create a new span for the arrow symbol
+        let correctnessCell = document.createElement("div");
+        let symbolSpan = document.createElement("span"); // Create a new span for the arrow symbol
         symbolSpan.className = "arrow-container"; // Reuse the arrow-container class for styling
-        
+
         let symbol = ""; // Default, no symbol
         if (criteria.includes("before")) {
             symbol = "↑"; // Up arrow for before
@@ -231,28 +287,34 @@ function addGuess(guess) {
             symbolSpan.className += " arrow down-arrow"; // Add classes for down arrow
         }
         symbolSpan.textContent = symbol; // Set the text content of the span to the arrow symbol
-        
+
         correctnessCell.textContent = value + " "; // Add a space for separation
         correctnessCell.appendChild(symbolSpan); // Append the arrow span next to the value
         correctnessCell.className = criteria.replace(" ", "-"); // Use className for styling based on the criteria
-        correctnessCell.className += ' grid-cell'
+        correctnessCell.className += " grid-cell";
         return correctnessCell;
     };
-    
-    let trackNumCell = appendCorrectnessCell(correctness.trackNumberMatch, trackInfo.track_number.toString());
-    let trackLengthCell = appendCorrectnessCell(correctness.trackLengthMatch, trackInfo.track_length);
-    
-    let featuresCell = document.createElement('div');
-    featuresCell.textContent = trackInfo.features.join(', ') || 'No features';
-    featuresCell.className = 'grid-cell ' + correctness.sharedFeatures;
-    
-    const empty = document.querySelectorAll('.empty')
+
+    let trackNumCell = appendCorrectnessCell(
+        correctness.trackNumberMatch,
+        trackInfo.track_number.toString()
+    );
+    let trackLengthCell = appendCorrectnessCell(
+        correctness.trackLengthMatch,
+        trackInfo.track_length
+    );
+
+    let featuresCell = document.createElement("div");
+    featuresCell.textContent = trackInfo.features.join(", ") || "No features";
+    featuresCell.className = "grid-cell " + correctness.sharedFeatures;
+
+    const empty = document.querySelectorAll(".empty");
     for (let i = 0; i < 5; i++) {
-        empty[i].remove()
+        empty[i].remove();
     }
 
-    let gridTable = document.querySelector('.grid-table')
-    let firstEmptyCell = document.querySelectorAll('.empty')[0]
+    let gridTable = document.querySelector(".grid-table");
+    let firstEmptyCell = document.querySelectorAll(".empty")[0];
 
     gridTable.insertBefore(songNameCell, firstEmptyCell);
     gridTable.insertBefore(albumCoverCell, firstEmptyCell);
@@ -262,7 +324,10 @@ function addGuess(guess) {
 
     if (JSON.stringify(trackInfo) === JSON.stringify(targetInfo)) {
         gameWon();
-    } else if (guesses.length >= MAX_GUESSES && guesses[guesses.length - 1] === guess) {
+    } else if (
+        guesses.length >= MAX_GUESSES &&
+        guesses[guesses.length - 1] === guess
+    ) {
         gameLost();
         disableGameInput();
     }
@@ -273,96 +338,115 @@ function addGuess(guess) {
  * @param {string} message - The error message to display.
  * @param {number} [seconds=2.5] - The duration to display the message.
  */
-function showBanner(message, seconds=2.5) {
-    if (!document.querySelector('#errorBox')) {
-        const errorBox = document.createElement('div');
-        errorBox.id = 'errorBox';
+function showBanner(message, seconds = 2.5) {
+    if (!document.querySelector("#errorBox")) {
+        const errorBox = document.createElement("div");
+        errorBox.id = "errorBox";
         document.body.appendChild(errorBox);
     }
 
-    const errorBox = document.querySelector('#errorBox');
+    const errorBox = document.querySelector("#errorBox");
     errorBox.textContent = message;
 
-    errorBox.style.animation = 'slideIn 0.5s ease-in-out forwards';
+    errorBox.style.animation = "slideIn 0.5s ease-in-out forwards";
 
     setTimeout(() => {
-        errorBox.style.animation = 'slideOut 0.5s ease-in-out forwards';
+        errorBox.style.animation = "slideOut 0.5s ease-in-out forwards";
     }, seconds * 1000);
     setTimeout(() => {
-        errorBox.textContent = '';
-    }, seconds * 1000 + 500)
+        errorBox.textContent = "";
+    }, seconds * 1000 + 500);
 }
 
 /**
  * Disables game input fields and buttons.
  */
 function disableGameInput() {
-    const songInputField = document.getElementById('songInput');
+    const songInputField = document.getElementById("songInput");
     songInputField.disabled = true;
-    songInputField.style.display = 'none'
+    songInputField.style.display = "none";
 
-    const inputUnderline = document.getElementById('underline')
-    inputUnderline.style.display = 'none'
+    const inputUnderline = document.getElementById("underline");
+    inputUnderline.style.display = "none";
 
-    const submitButton = document.getElementById('submitBtn');
+    const submitButton = document.getElementById("submitBtn");
     submitButton.disabled = true;
-    submitButton.style.display = 'none'
+    submitButton.style.display = "none";
 
-    const resultsButton = document.getElementById('results');
-    resultsButton.style.display = 'block'
+    const resultsButton = document.getElementById("results");
+    resultsButton.style.display = "block";
 }
 
 /**
  * Enables game input fields and buttons.
  */
 function enableGameInput() {
-    const songInputField = document.getElementById('songInput');
+    const songInputField = document.getElementById("songInput");
     songInputField.disabled = false;
-    songInputField.style.display = 'block'
+    songInputField.style.display = "block";
 
-    const inputUnderline = document.getElementById('underline')
-    inputUnderline.style.display = 'block'
+    const inputUnderline = document.getElementById("underline");
+    inputUnderline.style.display = "block";
 
-    const submitButton = document.getElementById('submitBtn');
+    const submitButton = document.getElementById("submitBtn");
     submitButton.disabled = false;
-    submitButton.style.display = 'block'
+    submitButton.style.display = "block";
 
-    const resultsButton = document.getElementById('results');
-    resultsButton.style.display = 'none'
+    const resultsButton = document.getElementById("results");
+    resultsButton.style.display = "none";
 }
 
 /**
  * Handles the game win scenario and updates the game state.
  */
 function gameWon() {
-    consent = localStorage.getItem('cookieConsent')
-    if (consent && consent.analytics){
-        gtag('event', 'game_won', {
-            'event_category': 'Game Outcome',
-            'event_label': 'Win'
+    consent = localStorage.getItem("cookieConsent");
+    if (consent && consent.analytics) {
+        gtag("event", "game_won", {
+            event_category: "Game Outcome",
+            event_label: "Win",
         });
     }
-    
-    const today = new Date();
-    const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
 
-    const lastGame = localStorage.getItem(hardMode ? 'lastHardGame' : 'lastGame');
-    if (!(lastGame && lastGame === formattedToday.toString())){
-        localStorage.setItem(hardMode ? 'lastHardGame' : 'lastGame', formattedToday)
-        localStorage.setItem('streak', parseInt(localStorage.getItem('streak') || 0) + 1);
-        localStorage.setItem('correct', parseInt(localStorage.getItem('correct') || 0) + 1);
-        localStorage.setItem('gamesPlayed', parseInt(localStorage.getItem('gamesPlayed') || 0) + 1);
+    const today = new Date();
+    const formattedToday =
+        today.getFullYear() +
+        "-" +
+        String(today.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(today.getDate()).padStart(2, "0");
+
+    const lastGame = localStorage.getItem(
+        hardMode ? "lastHardGame" : "lastGame"
+    );
+    if (!(lastGame && lastGame === formattedToday.toString())) {
+        localStorage.setItem(
+            hardMode ? "lastHardGame" : "lastGame",
+            formattedToday
+        );
+        localStorage.setItem(
+            "streak",
+            parseInt(localStorage.getItem("streak") || 0) + 1
+        );
+        localStorage.setItem(
+            "correct",
+            parseInt(localStorage.getItem("correct") || 0) + 1
+        );
+        localStorage.setItem(
+            "gamesPlayed",
+            parseInt(localStorage.getItem("gamesPlayed") || 0) + 1
+        );
     }
     disableGameInput();
 
-    if (!gameWonCheck && !hardMode){
+    if (!gameWonCheck && !hardMode) {
         gameWonCheck = true;
-        if (!changingModes){
+        if (!changingModes) {
             showWinModal();
         }
-    } else if (!hardGameWonCheck && hardMode){
+    } else if (!hardGameWonCheck && hardMode) {
         hardGameWonCheck = true;
-        if (!changingModes){
+        if (!changingModes) {
             showWinModal();
         }
     }
@@ -372,28 +456,41 @@ function gameWon() {
  * Handles the game loss scenario and updates the game state.
  */
 function gameLost() {
-    consent = localStorage.getItem('cookieConsent')
-    if (consent && consent.analytics){
-        gtag('event', 'game_lose', {
-            'event_category': 'Game Outcome',
-            'event_label': 'Lose'
+    consent = localStorage.getItem("cookieConsent");
+    if (consent && consent.analytics) {
+        gtag("event", "game_lose", {
+            event_category: "Game Outcome",
+            event_label: "Lose",
         });
     }
-    
+
     disableGameInput();
     const today = new Date();
-    const formattedToday = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-    const lastGame = localStorage.getItem(hardMode ? 'lastHardGame' : 'lastGame')
-    if (!(lastGame && lastGame === formattedToday.toString())){
-        localStorage.setItem(hardMode ? 'lastHardGame' : 'lastGame', formattedToday)
-        localStorage.setItem('streak', 0);
-        localStorage.setItem('gamesPlayed', parseInt(localStorage.getItem('gamesPlayed') || 0) + 1);
+    const formattedToday =
+        today.getFullYear() +
+        "-" +
+        String(today.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(today.getDate()).padStart(2, "0");
+    const lastGame = localStorage.getItem(
+        hardMode ? "lastHardGame" : "lastGame"
+    );
+    if (!(lastGame && lastGame === formattedToday.toString())) {
+        localStorage.setItem(
+            hardMode ? "lastHardGame" : "lastGame",
+            formattedToday
+        );
+        localStorage.setItem("streak", 0);
+        localStorage.setItem(
+            "gamesPlayed",
+            parseInt(localStorage.getItem("gamesPlayed") || 0) + 1
+        );
     }
-    
-    if (!gameLostCheck && !hardMode){
+
+    if (!gameLostCheck && !hardMode) {
         gameLostCheck = true;
         showLoseModal();
-    } else if (!hardGameLostCheck && hardMode){
+    } else if (!hardGameLostCheck && hardMode) {
         hardGameLostCheck = true;
         showLoseModal();
     }
