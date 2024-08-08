@@ -1,0 +1,367 @@
+.topShopCTA {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    z-index: 100;
+    align-self: center;
+    justify-content: center;
+    background-color: hsl(0, 55%, 55%);
+    color: hsl(0, 55%, 95%);
+    padding: 5px;
+}
+
+.topShopCTA p {
+    margin: 0;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.topShopCTA a {
+    color: hsl(0, 55%, 85%);
+}
+
+.background {
+    position: fixed; /* Use fixed or absolute depending on your needs */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keep the background behind other content */
+}
+
+.image-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s ease;
+    opacity: 0; /* Start invisible */
+}
+
+/* Hard mode */
+.hard {
+    background-image: radial-gradient(
+            circle at 20% 35%,
+            #be2e1e,
+            transparent 50%
+        ),
+        radial-gradient(circle at 75% 25%, #632406, transparent 50%),
+        radial-gradient(circle at 50% 60%, #d96fd9, transparent 50%);
+}
+
+/* Easy mode */
+.easy {
+    background-image: radial-gradient(
+            circle at 20% 35%,
+            #2f92c4,
+            transparent 50%
+        ),
+        radial-gradient(circle at 75% 25%, #d7a9eb, transparent 50%),
+        radial-gradient(circle at 50% 60%, #da5869, transparent 50%);
+    opacity: 1;
+}
+
+.hard,
+.easy {
+    background-size: cover;
+}
+
+.topButtons {
+    margin-top: 40px;
+    display: flex;
+    z-index: 1;
+    position: fixed;
+    top: 20px;
+    right: 10px;
+}
+
+.topButtons button {
+    margin-right: 10px;
+    height: 57px;
+    width: 57px;
+    border-radius: 24px;
+    background-color: var(--button-color);
+    border: 3px solid white;
+}
+
+#settingsButton i {
+    transition: transform 0.2s ease-in-out;
+}
+#settingsButton i:hover {
+    transform: rotate(45deg) scale(1.1);
+}
+
+.contentContainer {
+    /* background-color: rgba(255, 255, 255, 0.051); */
+    border-radius: 20px;
+    /* backdrop-filter: blur(10px); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+}
+
+#errorBox {
+    position: fixed;
+    top: -50px; /* Start out of view */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--close);
+    color: var(--text-color2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: slideOut 0.5s ease-in-out forwards;
+}
+
+.xyz {
+    font-size: 40px;
+}
+
+#albumContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.album {
+    margin-top: 20px;
+    width: 70px;
+    height: auto;
+    margin-right: 10px;
+    animation-timing-function: ease-in-out;
+}
+
+#underline {
+    margin-top: -15px;
+    background: rgb(255, 255, 255);
+    height: 2px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+::placeholder {
+    color: var(--placeholder-text);
+}
+
+/* Suggestion box styling */
+.search {
+    width: 50%;
+    min-width: 250px;
+}
+
+#suggestions {
+    border-radius: 17px;
+    translate: 0px -19px;
+    display: none;
+    z-index: 1;
+    overflow-y: auto;
+    text-align: center;
+    width: 50%;
+    min-width: 250px;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: var(--suggestion-hover);
+}
+
+#submitBtn,
+#results {
+    height: 42px;
+    outline: 2px solid white;
+    background-color: rgba(255, 255, 255, 0.3);
+    max-width: 130px;
+    padding-block: 0px;
+    border-radius: 15px;
+}
+
+#results {
+    display: none;
+    max-width: 200px;
+}
+
+#submitBtn p,
+#results p {
+    margin: 0px;
+    /* test */
+}
+
+#submitBtn:hover,
+#results:hover {
+    background-color: white;
+    color: rgb(0, 0, 0);
+}
+
+#guessCounter {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Table styling */
+.grid-table {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Keep your 5 columns */
+    row-gap: 5px;
+    column-gap: 2px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.grid-header {
+    font-weight: bold;
+    color: var(--text-color);
+    padding: 8px;
+    text-align: center;
+}
+
+.grid-cell {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Changed to center for better default alignment */
+    background-color: var(--cell-color);
+    padding: 8px;
+    text-align: center;
+    min-width: 0; /* Allows the content to shrink without overflow */
+    overflow: hidden; /* Hides any overflow */
+    word-break: break-word; /* Ensures text wraps */
+}
+
+.grid-cell.empty {
+    height: 70.54px;
+}
+
+/* Target the first element in each row */
+.grid-table .grid-cell:nth-child(5n + 1) {
+    border-radius: 10px 0px 0px 10px;
+}
+
+.grid-table .grid-cell:nth-child(5n) {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.album_cell {
+    display: flex; /* Keeps the album image and span next to each other */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Align items to the start of the cell */
+    min-width: 70px; /* Keeps your min-width */
+    min-height: 70px;
+}
+
+.album_cell img,
+.album_cell span {
+    vertical-align: middle; /* This may not be necessary with flexbox alignment */
+}
+
+/* Correctness indicators */
+.correct {
+    font-weight: bold;
+    background-color: var(--correct);
+    color: var(--text-color2);
+}
+
+.before-close,
+.after-close,
+.close {
+    background-color: var(--close);
+    color: var(--text-color2);
+}
+
+.correct,
+.before-close,
+.after-close,
+.close {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.up-arrow {
+    animation: bounceUp 1s 2; /* Play the animation twice */
+}
+
+.down-arrow {
+    animation: bounceDown 1s 2; /* Play the animation twice */
+}
+
+.arrow-container {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.xLink {
+    opacity: 85%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    font-size: large;
+    color: rgba(255, 255, 255);
+}
+.xLink:hover {
+    opacity: 1;
+}
+.xLink p {
+    margin: 0px;
+}
+.xLogo {
+    height: 30px;
+    width: 30px;
+    filter: invert();
+}
+
+@media (max-width: 768px) {
+    .grid-header {
+        font-size: large;
+    }
+    .grid-cell {
+        padding: 2px;
+        font-size: large;
+    }
+    .album {
+        width: 50px;
+    }
+    .contentContainer {
+        padding-inline: 10px;
+    }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    .contentContainer {
+        padding-inline: 10px;
+    }
+    .grid-header {
+        font-size: small;
+    }
+    .grid-cell {
+        padding: 2px;
+        font-size: small;
+    }
+
+    .xLink p {
+        display: none;
+    }
+}
+
+@media (max-width: 470px) {
+    .optionDescription {
+        bottom: -25px;
+    }
+}
+
+@media (max-width: 373px) {
+    .smallLinks {
+        padding-top: 20px;
+    }
+}

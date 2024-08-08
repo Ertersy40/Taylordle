@@ -1,0 +1,58 @@
+@font-face {
+    font-family: "Birds of Paradise";
+    src: url("../fonts/BirdsofParadise.woff2") format("woff2"),
+        url("../fonts/BirdsofParadise.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TaylorSwiftHandwriting";
+    src: url("../fonts/TaylorSwiftHandwriting.woff2") format("woff2"),
+        url("../fonts/TaylorSwiftHandwriting.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Louis George Cafe";
+    src: url("../fonts/LouisGeorgeCafe.woff2") format("woff2"),
+        url("../fonts/LouisGeorgeCafe.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+input[type="search"],
+textarea,
+.suggestion-item,
+.grid-header,
+#submitBtn,
+#guessCounter,
+p,
+.modal,
+button,
+#errorBox {
+    font-family: "TaylorSwiftHandwriting";
+    font-size: larger;
+}
+.grid-cell,
+p,
+.modal,
+button,
+#errorBox,
+li {
+    font-family: "Louis George Cafe";
+    font-size: larger;
+}
+
+.alternate-font {
+    font-family: sans-serif; /* Replace 'YourAlternateFont' with the actual font name */
+}
+
+.correctSong p {
+    font-family: "TaylorSwiftHandwriting";
+    margin-top: 18px;
+}

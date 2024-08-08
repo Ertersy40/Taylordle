@@ -1,0 +1,226 @@
+.modal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--modal-color);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.greenText {
+    background-color: var(--correct);
+    border-radius: 3px;
+    padding-inline: 3px;
+    padding-block: 1px;
+}
+
+.yellowText {
+    background-color: var(--close);
+    border-radius: 3px;
+    padding-inline: 3px;
+    padding-block: 1px;
+}
+
+.modal-content {
+    color: var(--text-color);
+    background-color: var(--modal-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid var(--outline-color);
+    width: 80%;
+    max-width: 422px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-content p {
+    margin-bottom: -3px;
+}
+
+.closeModal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.modal-content p {
+    width: 80%;
+    text-align: center;
+}
+
+.countdown {
+    background-color: #7e1ebe8e;
+    border-radius: 10px;
+    margin-block: 10px;
+    padding: 10px;
+}
+
+#countdownMessage {
+    margin-block: 10px;
+}
+
+.countdown p {
+    margin-block: 5px;
+    width: 100%;
+}
+
+#countdownMessage a {
+    color: rgb(221, 221, 221);
+}
+
+#countdownWin,
+#countdownLose {
+    margin-block: 5px;
+}
+
+.closeModal {
+    color: var(--text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeModal:hover,
+.closeModal:focus {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.smallLinks {
+    width: 70%;
+    min-width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    text-wrap: nowrap;
+}
+
+.smallLinks a {
+    color: rgb(199, 199, 199);
+}
+.smallLinks a:hover {
+    color: white;
+}
+.smallLinks a p {
+    font-size: 12px;
+}
+
+.correctSong {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.stat {
+    padding: 3px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat p {
+    margin: 5px;
+    width: fit-content;
+}
+
+.stop-scrolling {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.ShareButton {
+    width: 70%;
+    min-width: 225px;
+}
+
+.option {
+    position: relative;
+    width: 100%;
+    margin-block: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.option p {
+    text-align: left;
+    margin-top: 0px;
+}
+
+.optionDescription {
+    font-size: small;
+    color: rgba(255, 255, 255, 0.815);
+    position: absolute;
+    bottom: -10px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

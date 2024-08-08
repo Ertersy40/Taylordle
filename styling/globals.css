@@ -1,0 +1,98 @@
+:root {
+    --background-color: rgb(40, 40, 40);
+    --text-color: white;
+    --text-color2: black;
+    --placeholder-text: rgb(255, 255, 255, 0.6);
+
+    --button-color: rgba(255, 255, 255, 0.4);
+    --button-hover: #ffffff;
+
+    --input-background: rgb(65, 65, 65);
+
+    --suggestion-color: #f2f2f2;
+    --suggestion-hover: #f2f2f2;
+
+    --modal-color: rgb(172, 172, 172, 0.4);
+    --outline-color: #888;
+
+    --correct: #56c14a;
+    --close: #e0c736;
+
+    --cell-color: rgba(255, 255, 255, 0.188);
+}
+
+input:checked + .slider {
+    background-color: #2196f3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(23px);
+    -ms-transform: translateX(23px);
+    transform: translateX(23px);
+}
+
+li {
+    font-size: large;
+    margin-block: 10px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+    color: var(--text-color2);
+}
+
+input[type="search"],
+textarea {
+    font-family: "TaylorSwiftHandwriting";
+    text-align: center;
+    background-color: transparent;
+    color: var(--text-color);
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+
+    outline: none;
+}
+
+/* General body styling */
+body {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    width: 98.5vw;
+    padding-block: 100px;
+    background-color: var(--background-color); /* Fallback color */
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    height: 100%;
+}
+
+h1 {
+    font-weight: normal;
+    font-family: "Birds of Paradise";
+    color: var(--text-color);
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 35px;
+}
