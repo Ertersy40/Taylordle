@@ -26,9 +26,6 @@
         gtag('config', 'G-TCKG7Q93BE');
     </script>
     <body>
-        <!-- <div class="topShopCTA">
-            <p><a href="https://taylordle.myshopify.com"> Taylor Swift Merch Drop!</a> get in before it's gone!</p>
-        </div> -->
 
         <div class="background">
             <div class="image-layer easy" style="opacity: 1;"></div>
@@ -56,19 +53,6 @@
         </div>
 
         <div class="contentContainer">
-            <!-- <div class="ad ad--top">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9512385908704001"
-                    crossorigin="anonymous"></script>
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-9512385908704001"
-                    data-ad-slot="4239955619"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div> -->
             <h1>Taylordle<span class="xyz">.xyz</span></h1>
             <div id="albumContainer"></div>
             <div class="search">
@@ -103,25 +87,11 @@
                     gridTable.appendChild(createCell());
                 }
             </script>
-
-            <!-- banner ad -->
-            <!-- <div class="ad ad--bottom">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9512385908704001"
-                    crossorigin="anonymous"></script> -->
-                <!-- BannerTest -->
-                <!-- <ins class="adsbygoogle"
-                    style="display:inline-block;width:728px;height:90px"
-                    data-ad-client="ca-pub-9512385908704001"
-                    data-ad-slot="2301076030"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div> -->
             
             <!-- Help Modal -->
             <div id="helpModal" class="modal" style="display:none;">
                 <div class="modal-content">
-                    <span class="closeModal" onclick="closeModal()">&times;</span>
+                    <span class="closeModal" onclick="closeModals()">&times;</span>
                     <p>Welcome to Taylordle!</p>
                     <ul>
                         <li>You have 8 guesses to get the correct Taylor Swift song. Original order not Taylor's Version!</li>
@@ -130,14 +100,14 @@
                         <li><span class="yellowText">Yellow</span> in the <b>track length</b> column indicates that the song length is within <b>30 seconds</b>, with an arrow hinting if it is higher ( ↑ ) or lower ( ↓ ).</li>
                         <li><span class="yellowText">Yellow</span> in the <b>features</b> column indicates that <b>one</b> or more of the <b>featured artists</b> is correct.</li>
                     </ul>
-                    <button onclick="closeModal()">Start</button>
+                    <button onclick="closeModals()">Start</button>
                 </div>
             </div>
             
             <!-- Settings Modal -->
             <div id="settingsModal" class="modal" style="display:none;">
                 <div class="modal-content">
-                    <span class="closeModal" onclick="closeModal()">&times;</span>
+                    <span class="closeModal" onclick="closeModals()">&times;</span>
                     <p><b>Settings</b></p>
                     <div class="option">
                         <p>Hard Mode</p>
@@ -167,7 +137,7 @@
             <!-- Win Modal -->
             <div id="winModal" class="modal" style="display:none;">
                 <div id="winModalContent" class="modal-content">
-                    <span class="closeModal" onclick="closeModal()">&times;</span>
+                    <span class="closeModal" onclick="closeModals()">&times;</span>
                     <p>Congratulations! You've guessed the correct song!</p>
                     <div class="correctSong" id="correctSongWin"></div>
                     <div class="stats" id="winStats">
@@ -186,58 +156,6 @@
                     </div>
 
                     <div class="countdown">
-                        <p id="countdownMessage">You unlocked 50% off <a href="https://taylordle.myshopify.com/discount/winner_discount?redirect=%2Fcollections%2Ffrontpage">Taylor merch!</a><br/>Offer ends in <span id="countdownSale">04:00</span>!</p>
-                        <script>
-                            function updateCountdownWin() {
-                                var now = new Date().getTime();
-                                var timeLeft = endTime - now;
-                    
-                                if (timeLeft > 0) {
-                                    var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                                    var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                    
-                                    document.getElementById("countdownSale").innerHTML =
-                                        ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
-                                } else {
-                                    clearInterval(intervalWin);
-                                    document.getElementById("countdownSale").innerHTML = "00:00:00";
-                                    var countdownMessage = document.getElementById("countdownMessage");
-                                    countdownMessage.innerHTML = "Times up, order our <a href='https://taylordle.myshopify.com'>regular merch</a> here!";
-                                }
-                            }
-                    
-                            // Check localStorage for countdown start time
-                            var countdownStart = localStorage.getItem("countdownStart");
-                            var now = new Date();
-                    
-                            // Function to check if the date is today
-                            function isToday(date) {
-                                var today = new Date();
-                                return date.getDate() === today.getDate() &&
-                                       date.getMonth() === today.getMonth() &&
-                                       date.getFullYear() === today.getFullYear();
-                            }
-                    
-                            // If there is no countdown start time, or it's not from today, set a new one
-                            if (!countdownStart || !isToday(new Date(parseInt(countdownStart)))) {
-                                countdownStart = now.getTime();
-                                localStorage.setItem("countdownStart", countdownStart);
-                            } else {
-                                countdownStart = parseInt(countdownStart);
-                            }
-                    
-                            // Calculate the end time
-                            var endTime = countdownStart + 4 * 60 * 1000; // 4 minutes from the start time
-                    
-                            updateCountdownWin();
-                            var intervalWin = setInterval(updateCountdownWin, 1000);
-                        </script>
-                    </div>
-                    
-                    
-                    
-
-                    <!-- <div class="countdown">
                         <p>Next Game in:</p>
                         <p id="countdownWin">00:00:00</p>
                         <script>
@@ -271,7 +189,7 @@
                             updateCountdownWin();
                             var intervalWin = setInterval(updateCountdownWin, 1000);
                         </script>
-                    </div> -->
+                    </div>
             
                     <button class="ShareButton" onclick="shareContent()">Share Your Score</button>
                     <div id="hardModeNotifier"></div>
@@ -282,7 +200,7 @@
             <!-- Lose Modal -->
             <div id="loseModal" class="modal" style="display:none;">
                 <div id="loseModalContent" class="modal-content">
-                    <span class="closeModal" onclick="closeModal()">&times;</span>
+                    <span class="closeModal" onclick="closeModals()">&times;</span>
                     <p>Game Over! You've used all your guesses.</p>
                     <p>The correct song was:</p>
                     <div class="correctSong" id="correctSongLose"></div>
@@ -300,7 +218,7 @@
                             <p id="gamesLose">0</p>
                         </div>
                     </div>
-                    <!-- <div class="countdown">
+                    <div class="countdown">
                         <p>Next Game in:</p>
                         <p id="countdownLose">00:00:00</p>
                         <script>
@@ -339,9 +257,6 @@
                     <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
                     <script type='text/javascript'>kofiwidget2.init('Support Me!', '#d94a6e', 'Y8Y1V7SR9');kofiwidget2.draw();</script>
                 </div>
-            </div> -->
-            <div class="countdown">
-                <p id="countdownMessage">Check out our new <a href="https://taylordle.myshopify.com/discount/winner_discount?redirect=%2Fcollections%2Ffrontpage">shop!</a><br/></p>
             </div>
             
             <!-- <div id="cookieConsentBanner" class="cookie-consent-banner">
@@ -396,7 +311,11 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
         <!-- <script src="cookies.js"></script> -->
-        <script src="app.js"></script>
+        <script src="scripts/initialisation.js"></script>
+        <script src="scripts/modals.js"></script>
+        <script src="scripts/gameLogic.js"></script>
+        <script src="scripts/settingsSwitches.js"></script>
+        <script src="scripts/sharing.js"></script>
         <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
         
     </body>
