@@ -83,6 +83,18 @@ document.addEventListener("click", function (e) {
 function pickRandomSong() {
     // Generate a seed from today's date
     const today = new Date();
+    if (
+        !hardMode &&
+        today.getFullYear() === 2024 &&
+        today.getMonth() === 10 && // November is month 10 in zero-based indexing
+        today.getDate() === 22
+    ) {
+        randomSong = "Lover";
+        targetInfo = getTrackInfo(randomSong);
+        return; // Exit the function early
+    }
+
+
     const seed =
         today.getFullYear() * 10000 +
         (today.getMonth() + 1) * 100 +
