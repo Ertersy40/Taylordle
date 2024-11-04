@@ -83,6 +83,8 @@ document.addEventListener("click", function (e) {
 function pickRandomSong() {
     // Generate a seed from today's date
     const today = new Date();
+
+    // If today is Nov 22 (fan's anniversary), choose lover
     if (
         !hardMode &&
         today.getFullYear() === 2024 &&
