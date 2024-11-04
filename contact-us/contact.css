@@ -63,7 +63,7 @@ body{
 .card{
     padding-block: 40px;
     width: 350px;
-    height: 200px;
+    height: fit-content;
     background-color: #D9D9D9;
     color: rgb(255, 255, 255);
     display: flex;
@@ -126,6 +126,7 @@ button {
 }
 
 #contact-form{
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
