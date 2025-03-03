@@ -27,8 +27,18 @@ function displaySuggestions(trackNames) {
  * Handles the submission of a guess and updates the game state.
  */
 function handleSubmit() {
-    consent = localStorage.getItem("cookieConsent");
+    console.log("Submitting guess...")
+    const consentString = localStorage.getItem("cookieConsent");
+    let consent = null;
+    if (consentString) {
+        try {
+            consent = JSON.parse(consentString);
+        } catch (e) {
+            console.error("Error parsing cookieConsent from localStorage:", e);
+        }
+    }
     if (consent && consent.analytics) {
+        console.log("sending event")
         gtag("event", "submit_word", {
             event_category: "Game Interaction",
             event_label: "Word Submission",
@@ -60,7 +70,15 @@ function handleSubmit() {
         guesses.length >= MAX_GUESSES &&
         JSON.stringify(inputInfo) !== JSON.stringify(targetInfo)
     ) {
-        consent = localStorage.getItem("cookieConsent");
+        const consentString = localStorage.getItem("cookieConsent");
+        let consent = null;
+        if (consentString) {
+            try {
+                consent = JSON.parse(consentString);
+            } catch (e) {
+                console.error("Error parsing cookieConsent from localStorage:", e);
+            }
+        }
         if (consent && consent.analytics) {
             gtag("event", "game_lose", {
                 event_category: "Game Outcome",
@@ -400,7 +418,15 @@ function enableGameInput() {
  * Handles the game win scenario and updates the game state.
  */
 function gameWon() {
-    consent = localStorage.getItem("cookieConsent");
+    const consentString = localStorage.getItem("cookieConsent");
+    let consent = null;
+    if (consentString) {
+        try {
+            consent = JSON.parse(consentString);
+        } catch (e) {
+            console.error("Error parsing cookieConsent from localStorage:", e);
+        }
+    }
     if (consent && consent.analytics) {
         gtag("event", "game_won", {
             event_category: "Game Outcome",
@@ -456,7 +482,15 @@ function gameWon() {
  * Handles the game loss scenario and updates the game state.
  */
 function gameLost() {
-    consent = localStorage.getItem("cookieConsent");
+    const consentString = localStorage.getItem("cookieConsent");
+    let consent = null;
+    if (consentString) {
+        try {
+            consent = JSON.parse(consentString);
+        } catch (e) {
+            console.error("Error parsing cookieConsent from localStorage:", e);
+        }
+    }
     if (consent && consent.analytics) {
         gtag("event", "game_lose", {
             event_category: "Game Outcome",
