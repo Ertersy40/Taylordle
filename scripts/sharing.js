@@ -42,6 +42,22 @@ function generateEmojiString() {
  * Shares the game results content either via the Web Share API or by copying to clipboard.
  */
 function shareContent() {
+    const consentString = localStorage.getItem("cookieConsent");
+    let consent = null;
+    if (consentString) {
+        try {
+            consent = JSON.parse(consentString);
+        } catch (e) {
+            console.error("Error parsing cookieConsent from localStorage:", e);
+        }
+    }
+    if (consent && consent.analytics) {
+        console.log("sending event")
+        gtag("event", "Share_Click", {
+            event_category: "Game Interaction",
+            event_label: "Share",
+        });
+    }
     const emojis = generateEmojiString();
 
     const startDate = new Date("2023-12-13");
